@@ -7,7 +7,7 @@ import { BrandsService } from './brands.service';
 export class BrandsController {
     constructor(private brandsService: BrandsService) {}
 
-    @Post('getlogo')
+    @Post('scrapeBrand')
     getLogo(@Body() dto: ScrapeBrands, @Req() req : Request, @Res() res : Response) {
         return this.brandsService.scrapeForBranding(dto, res)
     }

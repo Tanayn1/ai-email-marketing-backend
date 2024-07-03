@@ -9,7 +9,7 @@ export class BrandsService {
     constructor(private prisma: PrismaService) {}
 
     async scrapeForBranding(dto : ScrapeBrands, res : Response) {
-        const { url } = dto 
+        const { url, brandName } = dto 
         const browser = await puppeteer.launch()
 
        try {
@@ -47,6 +47,10 @@ export class BrandsService {
              if (logo) break            
         }
 
+            //do prisma
+
+
+
         //scrape fonts
         const fonts = await page.evaluate(()=>{
             const primaryFontFamilies = new Set();
@@ -55,25 +59,45 @@ export class BrandsService {
             const primaryFonts = document.querySelectorAll('h1, h2, h3, h4, h5')
 
             const secondaryFonts = document.querySelectorAll('p')
-
-            const elements = document.querySelectorAll('*');
+            const primaryFontCounts = {};
+            const secondaryFontCounts ={}
             primaryFonts.forEach(el => {
                 const style = window.getComputedStyle(el);
                 const fontFamily = style.getPropertyValue('font-family');
                 primaryFontFamilies.add(fontFamily.split(',')[0].trim().replace(/['"]/g, ''));
+
+                if (fontFamily) {
+                    if (!primaryFontCounts[fontFamily]) {
+                      primaryFontCounts[fontFamily] = 0;
+                    }
+                    primaryFontCounts[fontFamily]++;
+                  }
               });
             secondaryFonts.forEach(el => {
             const style = window.getComputedStyle(el);
             const fontFamily = style.getPropertyValue('font-family');
             secondaryFontFamilies.add(fontFamily.split(',')[0].trim().replace(/['"]/g, ''));
+            if (fontFamily) {
+                if (!secondaryFontCounts[fontFamily]) {
+                  secondaryFontCounts[fontFamily] = 0;
+                }
+                secondaryFontCounts[fontFamily]++;
+              }
+
             });
 
             const primaryFontsArray = Array.from(primaryFontFamilies);
             const secondaryFontsArray = Array.from(secondaryFontFamilies);
+            const primaryFontCountsArray = Object.values(primaryFontCounts);
+            const secondaryFontCountsArray = Object.values(secondaryFontCounts)
+            // do prisma
 
-
-            return { primaryFonts: Array.from(primaryFontFamilies), secondaryFonts: Array.from(secondaryFontFamilies) };    
+            return { primaryFonts: Array.from(primaryFontFamilies), 
+                secondaryFonts: Array.from(secondaryFontFamilies), 
+                primaryFontCounts, secondaryFontCounts };    
             });
+
+
 
             //scrape colors
             const colors = await page.evaluate(()=>{
@@ -115,6 +139,8 @@ export class BrandsService {
                 const { colors, backgroundColors } = processColors(colorsArray);
                 colors.sort((a, b) => b.count - a.count);
                 backgroundColors.sort((a, b) => b.count - a.count);
+
+                //do prisma
 
                 return { colors, backgroundColors }
             });
