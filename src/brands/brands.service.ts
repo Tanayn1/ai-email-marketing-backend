@@ -11,7 +11,7 @@ export class BrandsService {
     async scrapeForBranding(dto : ScrapeBrands, res : Response) {
         const { url, brandName } = dto 
         const browser = await puppeteer.launch()
-
+        console.log('Browser has launched')
        try {
         const page = await browser.newPage()
         page.setDefaultNavigationTimeout(2 * 60 * 1000);
@@ -19,6 +19,7 @@ export class BrandsService {
             page.waitForNavigation(),
             page.goto(url)
         ])
+        console.log('Navigated to url')
         
         //scrape logo
         const logoSelectors : Array<string> = [
@@ -46,9 +47,7 @@ export class BrandsService {
              }, selector);
              if (logo) break            
         }
-
-            //do prisma
-
+        
 
 
         //scrape fonts
@@ -88,13 +87,18 @@ export class BrandsService {
 
             const primaryFontsArray = Array.from(primaryFontFamilies);
             const secondaryFontsArray = Array.from(secondaryFontFamilies);
-            const primaryFontCountsArray = Object.values(primaryFontCounts);
-            const secondaryFontCountsArray = Object.values(secondaryFontCounts)
-            // do prisma
+            const primaryFontCountsArray : Array<number> = Object.values(primaryFontCounts);
+            const secondaryFontCountsArray : Array<number> = Object.values(secondaryFontCounts);
+            const indexOfMostUsedPrimaryFont = primaryFontCountsArray.indexOf(Math.max(...primaryFontCountsArray));
+            const indexOfMostUsedSecondaryFont = secondaryFontCountsArray.indexOf(Math.max(...secondaryFontCountsArray));
+            console.log('indexes',indexOfMostUsedPrimaryFont, indexOfMostUsedSecondaryFont)
+
 
             return { primaryFonts: Array.from(primaryFontFamilies), 
                 secondaryFonts: Array.from(secondaryFontFamilies), 
-                primaryFontCounts, secondaryFontCounts };    
+                primaryFontCounts, secondaryFontCounts, 
+                MostUsedPrimaryFont: primaryFontsArray[indexOfMostUsedPrimaryFont],
+                MostUsedSecondaryFont: secondaryFontsArray[indexOfMostUsedSecondaryFont]};    
             });
 
 
@@ -140,12 +144,33 @@ export class BrandsService {
                 colors.sort((a, b) => b.count - a.count);
                 backgroundColors.sort((a, b) => b.count - a.count);
 
-                //do prisma
 
                 return { colors, backgroundColors }
             });
 
-        return res.send({message: 'Success', data: { logo, fonts, colors }})
+            
+
+            const brand = await this.prisma.brands.create({data: {
+              brand_name: brandName,
+              logo: logo,
+              fonts: JSON.stringify({
+                primaryFont: fonts.MostUsedPrimaryFont,
+                secondaryFont: fonts.MostUsedSecondaryFont
+              }),
+              colors: JSON.stringify({
+                colors: {
+                  primaryColor: colors.colors[0].color,
+                  secondaryColors: [...colors.colors]
+                },
+                backgroundColors: {
+                  primaryColor: colors.backgroundColors[0].color,
+                  secondaryColors: [...colors.backgroundColors]
+                }
+              }),
+              brand_url: url
+            }})
+
+        return res.send({message: 'Success', brand})
        } catch (error) {
             return new BadRequestException(error)
        } finally {

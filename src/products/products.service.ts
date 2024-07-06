@@ -9,10 +9,9 @@ export class ProductsService {
     constructor(private prisma: PrismaService) {}
 
     async scrapeProduct(dto :ScrapeProduct, res : Response) {
-        const { url } = dto 
+        const { url, brandId } = dto 
         const browser = await puppeteer.launch();
         console.log('Browser has launched')
-
         try {
             const page = await browser.newPage()
             page.setDefaultNavigationTimeout(2 * 60 * 1000);
@@ -209,31 +208,48 @@ export class ProductsService {
                 '[class*="product"][class*="image"]',
                 '[class*="product"][class*="photo"]'
             ];
+            const photosArray = []
+            for (let index = 0; index < photoSelectors.length; index++) {
+                const selector = photoSelectors[index];
+                const photos = await page.evaluate((selector)=>{
+                        const urls = new Set();
+                        // Get src from img tags
+                        document.querySelectorAll(`${selector} img`).forEach((img : any) => {
+                          if (img.src) urls.add(img.src);
+                        });
+                  
+                        // Get srcset from source tags within picture elements
+                        document.querySelectorAll(`${selector} picture source`).forEach((source : any) => {
+                          if (source.srcset) {
+                            // Split srcset and get the first URL (typically the highest resolution)
+                            const firstSrc = source.srcset.split(',')[0].split(' ')[0];
+                            urls.add(firstSrc);
+                          }
+                        });
+                        return Array.from(urls);
+                }, selector)
 
-            const photos = await page.evaluate(() => {
-                const urls = new Set();
-                // Get src from img tags
-                document.querySelectorAll('img').forEach(img => {
-                  if (img.src) urls.add(img.src);
-                });
-          
-                // Get srcset from source tags within picture elements
-                document.querySelectorAll('picture source').forEach((source : any) => {
-                  if (source.srcset) {
-                    // Split srcset and get the first URL (typically the highest resolution)
-                    const firstSrc = source.srcset.split(',')[0].split(' ')[0];
-                    urls.add(firstSrc);
-                  }
-                });
-            
-          
-                return Array.from(urls);
-              });
+                photosArray.push(...photos)
+
+                
+            }
+           
             
             
             // fetch reviews
 
-            res.send({message: 'Success', title, price, descriptions, photos}).status(200)
+            //upload to prisma db
+            const product = await this.prisma.products.create({ data: {
+                brand_id: brandId,
+                product_url: url,
+                product_name: title as string,
+                images: photosArray,
+                description: descriptions,
+                price: price
+                
+            } })
+
+            res.send({message: 'Success', product}).status(200)
             
         } catch (error) {
             return new BadRequestException(error)

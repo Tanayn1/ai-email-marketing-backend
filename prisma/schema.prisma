@@ -24,18 +24,22 @@ model User {
 model Brands {
   id String @default(uuid()) @unique @id
   brand_name String
-  logos String[]
-  colors String[]
-  fonts String[]
+  logo String?
+  colors Json?
+  fonts Json?
   brand_url String?
+  created_at DateTime @default(now())
+
 }
 
 model Products {
   id String @default(uuid()) @unique @id
-  brand_id String 
+  brand_id String
+  price String?
   product_url String?
-  product_name String
+  product_name String?
   images String[]
-  description String
+  description String[]
+  created_at DateTime @default(now())
 
 }

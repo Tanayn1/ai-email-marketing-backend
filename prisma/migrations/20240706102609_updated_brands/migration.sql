@@ -1,0 +1,3 @@
+-- AlterTable
+ALTER TABLE "Brands" ALTER COLUMN "colors" DROP NOT NULL,
+ALTER COLUMN "fonts" DROP NOT NULL;
