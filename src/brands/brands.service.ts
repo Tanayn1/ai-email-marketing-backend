@@ -1,4 +1,4 @@
-import { BadRequestException, Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable, UnauthorizedException } from '@nestjs/common';
 import puppeteer from 'puppeteer';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { ScrapeBrands } from './dto/brands.dto';
@@ -8,7 +8,7 @@ import { Response } from 'express';
 export class BrandsService {
     constructor(private prisma: PrismaService) {}
 
-    async scrapeForBranding(dto : ScrapeBrands, res : Response) {
+    async scrapeForBranding(dto : ScrapeBrands, res : Response, userId :string) {
         const { url, brandName } = dto 
         const browser = await puppeteer.launch()
         console.log('Browser has launched')
@@ -148,25 +148,28 @@ export class BrandsService {
                 return { colors, backgroundColors }
             });
 
+            const fontObj : any =  {             
+              primaryFont: fonts.MostUsedPrimaryFont,
+              secondaryFont: fonts.MostUsedSecondaryFont
+            }
             
+            const colorObj = {
+              colors: {
+                primaryColor: colors.colors[0].color,
+                secondaryColors: [...colors.colors]
+              },
+              backgroundColors: {
+                primaryColor: colors.backgroundColors[0].color,
+                secondaryColors: [...colors.backgroundColors]
+              }
+            }
 
             const brand = await this.prisma.brands.create({data: {
+              user_id: userId,
               brand_name: brandName,
               logo: logo,
-              fonts: JSON.stringify({
-                primaryFont: fonts.MostUsedPrimaryFont,
-                secondaryFont: fonts.MostUsedSecondaryFont
-              }),
-              colors: JSON.stringify({
-                colors: {
-                  primaryColor: colors.colors[0].color,
-                  secondaryColors: [...colors.colors]
-                },
-                backgroundColors: {
-                  primaryColor: colors.backgroundColors[0].color,
-                  secondaryColors: [...colors.backgroundColors]
-                }
-              }),
+              fonts: fontObj,
+              colors: colorObj,
               brand_url: url
             }})
 
@@ -178,5 +181,18 @@ export class BrandsService {
        }
     }
 
+    async getBrands(userId : string, res : Response) {
+      const brands = await this.prisma.brands.findMany({where: { user_id: userId}})
+      return res.send({ message: 'Success', brands }).status(200)
+    }
 
+    async getBrandById(userId : string, brandId: string, res : Response) {
+      const brand = await this.prisma.brands.findUnique({ where: { id: brandId } })
+      if (!brand) return new BadRequestException('No such brand with given id');
+      if (userId === brand.user_id) {
+        return res.send({ message: 'Success', brand }).status(200);
+      } else {
+        return new UnauthorizedException('User is not authorized to access this store');
+      }
+    }
 }
