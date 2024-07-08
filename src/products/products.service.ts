@@ -257,4 +257,9 @@ export class ProductsService {
             await browser.close()
         }
     }
+
+    async getProducts(brandId : string, res : Response) {
+        const products = await this.prisma.products.findMany({ where: { brand_id: brandId } })
+        return res.send({ message: 'Success', products }).status(200);
+    }
 }
