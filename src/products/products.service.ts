@@ -1,7 +1,7 @@
 import { BadRequestException, Injectable } from '@nestjs/common';
 import puppeteer from 'puppeteer';
 import { PrismaService } from 'src/prisma/prisma.service';
-import { ScrapeProduct } from './dto/products.dto';
+import { ScrapeProduct, UpdateProductDto } from './dto/products.dto';
 import { Response } from 'express';
 
 @Injectable()
@@ -163,20 +163,20 @@ export class ProductsService {
                 'div[role="document"] .description'
             ];
 
-            const descriptions = []
+            let descriptions = ''
 
             for (let index = 0; index < descriptionSelectors.length; index++) {
                 const selector = descriptionSelectors[index];
                 const elementsText = await page.evaluate((selector) => {
                     const elements = document.querySelectorAll(selector);
-                    const textContents = [];
+                    let textContents = '';
                     elements.forEach((element) => {
-                        textContents.push(element.textContent.trim());
+                        textContents = textContents + element.textContent.trim();
                     });
                     return textContents;
                 }, selector);
             
-                descriptions.push(...elementsText);
+                descriptions = descriptions + elementsText
             } 
 
             console.log(descriptions)
@@ -234,7 +234,13 @@ export class ProductsService {
                 
             }
            
-            
+            //filterPhotos
+            for (let i = photosArray.length - 1; i >= 0; i--) {
+                let url = photosArray[i];
+                if (!url.startsWith("https://")) {
+                  photosArray.splice(i, 1);
+                }
+              }
             
             // fetch reviews
 
@@ -261,5 +267,16 @@ export class ProductsService {
     async getProducts(brandId : string, res : Response) {
         const products = await this.prisma.products.findMany({ where: { brand_id: brandId } })
         return res.send({ message: 'Success', products }).status(200);
+    }
+
+    async getProductById(prodId : string, res : Response) {
+        const product = await this.prisma.products.findUnique({ where: { id: prodId }});
+        return res.send({ message: 'Success', product }).status(200);
+    }
+
+    async updateProduct(dto: UpdateProductDto, res: Response) {
+        const { product_id, product_name, price, description, images } = dto
+        const updatedProd = await this.prisma.products.update({ where: { id: product_id }, data: {product_name, price, description, images}})
+        return res.send({ message: 'Success', updatedProd }).status(200)
     }
 }

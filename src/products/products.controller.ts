@@ -1,6 +1,6 @@
-import { Body, Controller, Get, Param, Post, Req, Res, UseGuards } from '@nestjs/common';
+import { Body, Controller, Get, Param, Patch, Post, Req, Res, UseGuards } from '@nestjs/common';
 import { ProductsService } from './products.service';
-import { ScrapeProduct } from './dto/products.dto';
+import { ScrapeProduct, UpdateProductDto } from './dto/products.dto';
 import { Request, Response } from 'express';
 import { AuthGuard } from 'src/auth/auth.guard';
 
@@ -18,5 +18,18 @@ export class ProductsController {
     @UseGuards(AuthGuard)
     getProducts(@Param() params, @Req() req , @Res() res: Response) {
         return this.productsService.getProducts(params.id, res)
+    }
+
+
+    @Get('getProductById/:id')
+    @UseGuards(AuthGuard)
+    getProduct(@Param() params, @Req() req , @Res() res: Response) {
+        return this.productsService.getProductById(params.id, res)
+    }
+
+    @Patch('updateProduct')
+    @UseGuards(AuthGuard)
+    updateProduct(@Body() dto: UpdateProductDto ,@Req() req , @Res() res: Response) {
+        return this.productsService.updateProduct(dto, res)
     }
 }
