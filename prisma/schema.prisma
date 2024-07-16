@@ -44,3 +44,13 @@ model Products {
   created_at DateTime @default(now())
 
 }
+
+model editor {
+  id String @default(uuid()) @unique @id 
+  session_name String
+  user_id String
+  brand_id String?
+  product_id String?
+  email_saves Json[]
+  created_at DateTime @default(now())
+}
