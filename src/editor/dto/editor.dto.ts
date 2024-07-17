@@ -19,3 +19,14 @@ export class SaveSessionDto {
     @IsNotEmpty()
     json_array: Array<any>
 }
+
+export class SessionFromTemplateDto {
+    @IsNotEmpty()
+    templateId: string
+
+    @IsNotEmpty()
+    product_id: string
+
+    @IsNotEmpty()
+    brand_id: string
+}

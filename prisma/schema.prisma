@@ -54,3 +54,11 @@ model editor {
   email_saves Json[]
   created_at DateTime @default(now())
 }
+
+model Templates {
+  id String @default(uuid()) @unique @id 
+  template String
+  category String
+  created_at DateTime @default(now())
+
+}

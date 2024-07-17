@@ -1,7 +1,7 @@
 import { BadRequestException, Injectable } from '@nestjs/common';
 import { Response } from 'express';
 import { PrismaService } from 'src/prisma/prisma.service';
-import { ManualEditSessionDto, SaveSessionDto } from './dto/editor.dto';
+import { ManualEditSessionDto, SaveSessionDto, SessionFromTemplateDto } from './dto/editor.dto';
 
 @Injectable()
 export class EditorService {
@@ -48,5 +48,27 @@ export class EditorService {
         } });
         
         return res.send({message: 'Success', updatedEditSession})
+    }
+
+    async newSessionFromTemplate(dto : SessionFromTemplateDto, user_id : string, res: Response) {
+        const { templateId, product_id, brand_id } = dto;
+        const template = await this.prisma.templates.findUnique({ where: { id: templateId } });
+        const product = await this.prisma.products.findUnique({ where: { id: product_id } });
+        if (!product) return new BadRequestException('No such product exists')
+        if (!template) return new BadRequestException('No template found');
+        const date = new Date()
+        const editSession = await this.prisma.editor.create({ data: {
+            user_id: user_id,
+            product_id: product_id,
+            brand_id: brand_id,
+            session_name: product.product_name,
+            email_saves: [{
+                save: template.template,
+                updated_at: `${date.toLocaleTimeString()}, ${date.toLocaleDateString()}`
+            }]
+        } });
+
+        if (!editSession) return new BadRequestException('Failed to create session');
+        return res.send({ message: 'Success', editSession }).status(200);
     }
 }
