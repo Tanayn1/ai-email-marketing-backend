@@ -1,0 +1,346 @@
+{
+    "ROOT": {
+      "type": {
+        "resolvedName": "CanvasContainer"
+      },
+      "isCanvas": true,
+      "props": {
+        "backgroundColor": "{{{background_color}}}"
+      },
+      "displayName": "CanvasContainer",
+      "custom": {},
+      "hidden": false,
+      "nodes": [
+        "z_kede2frg",
+        "ztYTh0r0YC",
+        "ZfpxpsrD4f"
+      ],
+      "linkedNodes": {}
+    },
+    "z_kede2frg": {
+      "type": {
+        "resolvedName": "Hero"
+      },
+      "isCanvas": false,
+      "props": {},
+      "displayName": "Hero",
+      "custom": {},
+      "parent": "ROOT",
+      "hidden": false,
+      "nodes": [],
+      "linkedNodes": {
+        "hero": "xab8yaK_F6"
+      }
+    },
+    "xab8yaK_F6": {
+      "type": "div",
+      "isCanvas": true,
+      "props": {},
+      "displayName": "div",
+      "custom": {},
+      "parent": "z_kede2frg",
+      "hidden": false,
+      "nodes": [
+        "q59RkhfKzS",
+        "U4mCEzP-rX",
+        "wsWUaXMaAG"
+      ],
+      "linkedNodes": {}
+    },
+    "q59RkhfKzS": {
+      "type": {
+        "resolvedName": "Text"
+      },
+      "isCanvas": false,
+      "props": {
+        "paddingT": 40,
+        "paddingR": 0,
+        "paddingl": 0,
+        "paddingB": 0,
+        "fontFamily": "{{{font_header}}}",
+        "textColor": "{{{text_color}}}",
+        "italic": false,
+        "fontWeight": 600,
+        "align": "center",
+        "text": "{{email_title}}",
+        "fontSize": 40
+      },
+      "displayName": "Text",
+      "custom": {},
+      "parent": "xab8yaK_F6",
+      "hidden": false,
+      "nodes": [],
+      "linkedNodes": {}
+    },
+    "U4mCEzP-rX": {
+      "type": {
+        "resolvedName": "DraggableImage"
+      },
+      "isCanvas": false,
+      "props": {
+        "width": 260,
+        "height": 260,
+        "align": "center",
+        "marginB": 0,
+        "marginT": 20,
+        "marginR": 0,
+        "marginl": 0
+      },
+      "displayName": "DraggableImage",
+      "custom": {},
+      "parent": "xab8yaK_F6",
+      "hidden": false,
+      "nodes": [],
+      "linkedNodes": {}
+    },
+    "wsWUaXMaAG": {
+      "type": {
+        "resolvedName": "DraggableButton"
+      },
+      "isCanvas": false,
+      "props": {
+        "fontSize": 20,
+        "fontWeight": 500,
+        "borderRadius": 10,
+        "align": "center",
+        "marginT": 20,
+        "marginB": 0,
+        "marginR": 0,
+        "marginl": 0,
+        "paddingT": 10,
+        "paddingR": 20,
+        "paddingl": 20,
+        "paddingB": 10,
+        "backgroundColor": "{{{button_color}}}",
+        "textColor": "{{{text_color}}}",
+        "text": "{{cta_button_text}}"
+      },
+      "displayName": "DraggableButton",
+      "custom": {},
+      "parent": "xab8yaK_F6",
+      "hidden": false,
+      "nodes": [],
+      "linkedNodes": {}
+    },
+    "ztYTh0r0YC": {
+      "type": {
+        "resolvedName": "Testimonials"
+      },
+      "isCanvas": false,
+      "props": {},
+      "displayName": "Testimonials",
+      "custom": {},
+      "parent": "ROOT",
+      "hidden": false,
+      "nodes": [],
+      "linkedNodes": {
+        "testominal-container": "q2KYiDPbRh"
+      }
+    },
+    "q2KYiDPbRh": {
+      "type": {
+        "resolvedName": "CustomisableContainer"
+      },
+      "isCanvas": true,
+      "props": {
+        "marginT": "17",
+        "marginB": 0,
+        "marginR": 0,
+        "marginl": 0,
+        "height": 200,
+        "width": 600,
+        "paddingT": 0,
+        "paddingR": 0,
+        "paddingl": 0,
+        "paddingB": 0,
+        "alignX": "center",
+        "alignY": "center",
+        "flexDirection": "column",
+        "backgroundColor": "#fffff1",
+        "borderRadius": 20
+      },
+      "displayName": "CustomisableContainer",
+      "custom": {},
+      "parent": "ztYTh0r0YC",
+      "hidden": false,
+      "nodes": [
+        "WPqaWnbo7o",
+        "sM_9OC-Z-T",
+        "l4YbDGa1Dv"
+      ],
+      "linkedNodes": {}
+    },
+    "WPqaWnbo7o": {
+      "type": "div",
+      "isCanvas": false,
+      "props": {
+        "className": " flex text-yellow-400 fill-yellow-400 "
+      },
+      "displayName": "div",
+      "custom": {},
+      "parent": "q2KYiDPbRh",
+      "hidden": false,
+      "nodes": [
+        "JLXqVf-7J_",
+        "VG-pyL9Cim",
+        "QW5IhZtgh8",
+        "ckR5i7ka1H",
+        "EIcVg_4S4N"
+      ],
+      "linkedNodes": {}
+    },
+    "JLXqVf-7J_": {
+      "type": {
+        "resolvedName": "MdOutlineStarPurple500"
+      },
+      "isCanvas": false,
+      "props": {
+        "className": " h-8 w-8"
+      },
+      "displayName": "MdOutlineStarPurple500",
+      "custom": {},
+      "parent": "WPqaWnbo7o",
+      "hidden": false,
+      "nodes": [],
+      "linkedNodes": {}
+    },
+    "VG-pyL9Cim": {
+      "type": {
+        "resolvedName": "MdOutlineStarPurple500"
+      },
+      "isCanvas": false,
+      "props": {
+        "className": " h-8 w-8"
+      },
+      "displayName": "MdOutlineStarPurple500",
+      "custom": {},
+      "parent": "WPqaWnbo7o",
+      "hidden": false,
+      "nodes": [],
+      "linkedNodes": {}
+    },
+    "QW5IhZtgh8": {
+      "type": {
+        "resolvedName": "MdOutlineStarPurple500"
+      },
+      "isCanvas": false,
+      "props": {
+        "className": " h-8 w-8"
+      },
+      "displayName": "MdOutlineStarPurple500",
+      "custom": {},
+      "parent": "WPqaWnbo7o",
+      "hidden": false,
+      "nodes": [],
+      "linkedNodes": {}
+    },
+    "ckR5i7ka1H": {
+      "type": {
+        "resolvedName": "MdOutlineStarPurple500"
+      },
+      "isCanvas": false,
+      "props": {
+        "className": " h-8 w-8"
+      },
+      "displayName": "MdOutlineStarPurple500",
+      "custom": {},
+      "parent": "WPqaWnbo7o",
+      "hidden": false,
+      "nodes": [],
+      "linkedNodes": {}
+    },
+    "EIcVg_4S4N": {
+      "type": {
+        "resolvedName": "MdOutlineStarPurple500"
+      },
+      "isCanvas": false,
+      "props": {
+        "className": " h-8 w-8"
+      },
+      "displayName": "MdOutlineStarPurple500",
+      "custom": {},
+      "parent": "WPqaWnbo7o",
+      "hidden": false,
+      "nodes": [],
+      "linkedNodes": {}
+    },
+    "sM_9OC-Z-T": {
+      "type": {
+        "resolvedName": "Text"
+      },
+      "isCanvas": false,
+      "props": {
+        "paddingT": 0,
+        "paddingR": 0,
+        "paddingl": 0,
+        "paddingB": 0,
+        "fontFamily": "{{{font_text}}}",
+        "textColor": "{{{text_color}}}",
+        "italic": false,
+        "fontWeight": 400,
+        "align": "center",
+        "text": "\"{{product_review}}\"",
+        "fontSize": 15
+      },
+      "displayName": "Text",
+      "custom": {},
+      "parent": "q2KYiDPbRh",
+      "hidden": false,
+      "nodes": [],
+      "linkedNodes": {}
+    },
+    "l4YbDGa1Dv": {
+      "type": {
+        "resolvedName": "Text"
+      },
+      "isCanvas": false,
+      "props": {
+        "paddingT": 0,
+        "paddingR": 0,
+        "paddingl": 0,
+        "paddingB": 0,
+        "fontFamily": "{{{font_text}}}",
+        "textColor": "#000000",
+        "italic": false,
+        "fontWeight": 400,
+        "align": "center",
+        "text": "{{reviewer_name}}",
+        "fontSize": 12
+      },
+      "displayName": "Text",
+      "custom": {},
+      "parent": "q2KYiDPbRh",
+      "hidden": false,
+      "nodes": [],
+      "linkedNodes": {}
+    },
+    "ZfpxpsrD4f": {
+      "type": {
+        "resolvedName": "DraggableButton"
+      },
+      "isCanvas": false,
+      "props": {
+        "fontSize": 20,
+        "fontWeight": 500,
+        "borderRadius": 10,
+        "align": "center",
+        "marginT": "14",
+        "marginB": "30",
+        "marginR": 0,
+        "marginl": 0,
+        "paddingT": 10,
+        "paddingR": 10,
+        "paddingl": 10,
+        "paddingB": 10,
+        "backgroundColor": "{{{button_color}}}",
+        "textColor": "{{{button_text_color}}}",
+        "text": "{{cta_button_text_2}}"
+      },
+      "displayName": "DraggableButton",
+      "custom": {},
+      "parent": "ROOT",
+      "hidden": false,
+      "nodes": [],
+      "linkedNodes": {}
+    }
+  }
