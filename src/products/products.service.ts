@@ -3,10 +3,17 @@ import puppeteer from 'puppeteer';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { ScrapeProduct, UpdateProductDto } from './dto/products.dto';
 import { Response } from 'express';
+import OpenAI from 'openai';
 
 @Injectable()
 export class ProductsService {
-    constructor(private prisma: PrismaService) {}
+    private readonly openAi: OpenAI
+
+    constructor(private prisma: PrismaService) {
+        this.openAi = new OpenAI({
+            apiKey: process.env.OPEN_AI_KEY
+        })
+    }
 
     async scrapeProduct(dto :ScrapeProduct, res : Response) {
         const { url, brandId } = dto 
@@ -278,5 +285,57 @@ export class ProductsService {
         const { product_id, product_name, price, description, images } = dto
         const updatedProd = await this.prisma.products.update({ where: { id: product_id }, data: {product_name, price, description, images}})
         return res.send({ message: 'Success', updatedProd }).status(200)
+    }
+
+    async scrapeProductAi(dto: { url: string }, res : Response) {
+        const {url} = dto;
+        const browser = await puppeteer.launch()
+        console.log('Browser Has Launched')
+        try {
+            const page = await browser.newPage()
+            page.setDefaultNavigationTimeout(2 * 60 * 1000);
+            await Promise.all([
+                page.waitForNavigation(),
+                page.goto(url)
+            ]);
+            console.log('Navigated to url');
+            const html = await page.evaluate(()=>{
+                const divs = document.querySelectorAll('div');
+                return Array.from(divs).map(div => div.innerHTML);
+            });
+            const jsonFormat = {
+                "product_title":"{{title of product}}",
+                "product_images":["{{array of images}}"],
+                "price":"{{price}}",
+                "reviews": [{"review": "{{review}}", "name":"{{name of person who did review}}"}],
+                "descriptions": ["{{array of product descriptions or information}}"]
+            }
+           const products = await this.openAi.chat.completions.create({
+               model: 'gpt-4o-mini',
+               messages: [
+                   {
+                       role: 'system', 
+                       content: `You are a scraper that extracts product details from websites. Return all responses in a valid JSON format. Use the following format: ${jsonFormat} \nIf any of these values are not present, please return them as null.
+`
+                   }, {
+                       role: 'user',
+                       content: ` Here is the HTML content: ${html} \n Please extract and return the product title, images, price, descriptions, and reviews. If any of these values are not present in the HTML, please return them as null.`
+                   }
+               ],
+               response_format: { type:'json_object' }
+           })
+
+           console.log(products)
+           if (!products.choices[0].message.content) return new BadRequestException('Html to large')
+           return res.send({message: 'Success', product: products.choices[0].message.content}).status(200)
+
+
+        } catch (error) {
+            console.log(error)
+            return new BadRequestException(error)
+        } finally {
+            await browser.close()
+        }
+
     }
 }

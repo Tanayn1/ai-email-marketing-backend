@@ -32,4 +32,12 @@ export class ProductsController {
     updateProduct(@Body() dto: UpdateProductDto ,@Req() req , @Res() res: Response) {
         return this.productsService.updateProduct(dto, res)
     }
+
+    @Post('scrapeProductAi')
+    scrapeProductAi(@Body() dto: { url : string }, @Req() req, @Res() res: Response) {
+        return this.productsService.scrapeProductAi(dto, res);
+    }
+
+
+
 }

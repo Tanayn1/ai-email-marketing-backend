@@ -62,7 +62,7 @@ export class AiService {
             //}]
          } 
          const copy = await this.openAi.chat.completions.create({
-            model: 'gpt-3.5-turbo',
+            model: 'gpt-4o-mini',
             messages: [{
                 role: 'system', 
                 content: `you are a email marketing specialist that provides an output in valid json. The data schema should be like this ${jsonSchema} `
