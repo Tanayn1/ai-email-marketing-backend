@@ -4,6 +4,9 @@ import { GenerateEmailDto } from './dto/ai.dto';
 import { Response } from 'express';
 import * as template from  '../email-templates/testEmail.json' 
 import { PrismaService } from 'src/prisma/prisma.service';
+import { Brands, Products } from '@prisma/client';
+import { encodeBase64, compress } from "lzutf8";
+import { Colors, Fonts } from 'types/types';
 
 @Injectable()
 export class AiService {
@@ -16,21 +19,30 @@ export class AiService {
         })
     }
 
-    async getTemplateName(dto : GenerateEmailDto, res: Response) {
-        const { prompt } = dto;
+    async getTemplateName(prompt: string, designStyle: string) {
+        const jsonFormat = {
+            "template_name": "{{name of template}}"
+        }
         const templateSelection = await this.openAi.chat.completions.create({
-            model: 'gpt-3.5-turbo',
-            messages: [{
+            model: 'gpt-4o-mini',
+            messages: [
+                {
+                    role: 'system',
+                    content: `You are a email design specialist, you respond in valid json format with this exact format: ${jsonFormat}`
+            },{
                 role: 'user',
                 content: `Based on this prompt ${prompt}, which email template should i use? Please response with the template name only.\n Templates: `
-            }]
+            }],
+            response_format: { type: "json_object" }
         });
 
-        const templateName = templateSelection.choices[0].message.content.trim()
+        const templateName  = JSON.parse(templateSelection.choices[0].message.content)
+
+
+        return templateName.template_name
     }
 
-    async generateEmail() {
-        const prompt = 'I want a an email for my shoes im selling nike air max 90s'
+    async writeCopy(userPrompt: string, brand: Brands, product: Products, template: any) {
         function extractPlaceholders(obj: any, placeholders: Set<string> = new Set()): Set<string> {
             const placeholderPattern = /{{(.*?)}}/g;
           
@@ -61,6 +73,8 @@ export class AiService {
                 "{{placeholderName}}":"{{content}}"
             //}]
          } 
+
+         const prompt = `prompt: ${userPrompt} \n brand name: ${brand.brand_name} product name: ${product.product_name} product descriptions: ${product.description} product price: ${product.price}`
          const copy = await this.openAi.chat.completions.create({
             model: 'gpt-4o-mini',
             messages: [{
@@ -111,24 +125,24 @@ export class AiService {
         }
 
         const filledTemplate = fillPlaceholders(template, copyObj )
-        console.log(filledTemplate)
+        return filledTemplate
 
     }
 
-    async preFillTemplate() {
+    async preFillTemplate(brand: Brands, template : any) {
         const colorAndFontRegex = /\{\{\{(.*?)\}\}\}/g
-        const brand = await this.prisma.brands.findUnique({ where: { id: 'a28a3ad9-cb2c-4029-b084-39cc2864e698' } })
-        console.log(brand)
+        const fonts = brand.fonts as unknown as Fonts
+        const colors = brand.colors as unknown as Colors
         const preFill = {
-            text_color: 'black',
-            button_color: 'blue',
-            button_text_color: 'white',
-            background_color: 'white',
-            font_header: 'Arial',
-            font_text: 'Arial'
+            text_color: colors.colors.primaryColor,
+            button_color: colors.colors.secondaryColors[0],
+            button_text_color: colors.colors.secondaryColors[1] ?? colors.colors.primaryColor ,
+            background_color: colors.backgroundColors.primaryColor,
+            font_header: fonts.primaryFont,
+            font_text: fonts.secondaryFont
         };
         const preFillTemplate = this.fillPlaceholders(template, preFill, colorAndFontRegex);
-        console.log(preFillTemplate)
+        return preFillTemplate
 
 
     }
@@ -163,6 +177,35 @@ export class AiService {
 
         // Convert the filled template back to JSON string
         return JSON.stringify(filledTemplate, null, 2);
+    }
+
+    async compressTemplate(template : any, user_id : string, product: Products) {
+        const encodedTemplate = encodeBase64(compress(template));
+        const date = new Date()
+        const newSession = await this.prisma.editor.create({ data: {
+            session_name: product.product_name,
+            user_id: user_id,
+            brand_id: product.brand_id,
+            product_id: product.id,
+            email_saves: [{save: encodedTemplate, updated_at: `${date.toLocaleTimeString()}, ${date.toLocaleDateString()}`}]
+        } })
+
+        return newSession
+
+    }
+
+    async generateEmail(dto: GenerateEmailDto, user_id: string, res: Response) {
+        const { prompt, brand_id, product_id, designStyle } = dto;
+        const brand = await this.prisma.brands.findUnique({ where: { id: brand_id } })
+        const product = await this.prisma.products.findUnique({ where: { id: product_id } });
+        //const templateName = await this.getTemplateName(prompt, designStyle);
+        const preFillTemplate = await this.preFillTemplate(brand, template);
+        console.log(preFillTemplate)
+        const templateJson = await this.writeCopy(prompt, brand, product, preFillTemplate);
+        console.log(templateJson)
+        const newSession = await this.compressTemplate(templateJson, user_id, product);
+        console.log(newSession)
+        return res.send({message: 'Success', newSession}).status(200);
     }
     
 

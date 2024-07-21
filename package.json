@@ -28,6 +28,7 @@
     "bcrypt": "^5.1.1",
     "class-transformer": "^0.5.1",
     "class-validator": "^0.14.1",
+    "lzutf8": "^0.6.3",
     "openai": "^4.52.7",
     "puppeteer": "^22.12.1",
     "puppeteer-core": "^22.12.1",
