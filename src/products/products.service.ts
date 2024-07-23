@@ -1,7 +1,7 @@
 import { BadRequestException, Injectable } from '@nestjs/common';
 import puppeteer from 'puppeteer';
 import { PrismaService } from 'src/prisma/prisma.service';
-import { ScrapeProduct, UpdateProductDto } from './dto/products.dto';
+import { addImageDto, ScrapeProduct, UpdateProductDto } from './dto/products.dto';
 import { Response } from 'express';
 import OpenAI from 'openai';
 
@@ -337,5 +337,16 @@ export class ProductsService {
             await browser.close()
         }
 
+    }
+
+    async addImageToProduct(dto: addImageDto, res: Response) {
+        const { url, product_id } = dto;
+        const product = await this.prisma.products.findUnique({ where: {id: product_id} });
+        if (!product) return new BadRequestException('Product does not exist');
+        const updatedProduct = await this.prisma.products.update({ where: { id: product_id }, data: {
+            images: [ url, ...product.images ],
+         }});
+
+         return res.send({message: 'Success', product: updatedProduct}).status(200)
     }
 }

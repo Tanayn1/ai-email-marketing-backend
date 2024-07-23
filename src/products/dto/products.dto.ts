@@ -24,3 +24,11 @@ export class UpdateProductDto {
     @IsNotEmpty()
     description: string 
 }
+
+export class addImageDto {
+    @IsNotEmpty()
+    url: string
+
+    @IsNotEmpty()
+    product_id: string
+}

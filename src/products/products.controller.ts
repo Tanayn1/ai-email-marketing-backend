@@ -1,6 +1,6 @@
 import { Body, Controller, Get, Param, Patch, Post, Req, Res, UseGuards } from '@nestjs/common';
 import { ProductsService } from './products.service';
-import { ScrapeProduct, UpdateProductDto } from './dto/products.dto';
+import { addImageDto, ScrapeProduct, UpdateProductDto } from './dto/products.dto';
 import { Request, Response } from 'express';
 import { AuthGuard } from 'src/auth/auth.guard';
 
@@ -38,6 +38,11 @@ export class ProductsController {
         return this.productsService.scrapeProductAi(dto, res);
     }
 
+    @Post('addImage')
+    @UseGuards(AuthGuard)
+    addImage(@Body() dto: addImageDto,  @Req() req, @Res() res: Response ) {
+        return this.productsService.addImageToProduct(dto, res)
+    }
 
 
 }
