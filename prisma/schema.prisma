@@ -62,3 +62,12 @@ model Templates {
   created_at DateTime @default(now())
 
 }
+
+model ESP {
+  id String @default(uuid()) @unique @id 
+  api_key String 
+  label String
+  user_id String 
+  provider String
+  created_at DateTime @default(now())
+}
