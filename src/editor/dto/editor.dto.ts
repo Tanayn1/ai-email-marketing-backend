@@ -30,3 +30,8 @@ export class SessionFromTemplateDto {
     @IsNotEmpty()
     brand_id: string
 }
+
+export class GetImageDto {
+    @IsNotEmpty()
+    html: string
+}

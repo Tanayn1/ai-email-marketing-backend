@@ -2,7 +2,7 @@ import { Body, Controller, Get, Post, Req, Res, UseGuards } from '@nestjs/common
 import { EspApiKeysService } from './esp-api-keys.service';
 import { AuthGuard } from 'src/auth/auth.guard';
 import { Response } from 'express';
-import { CreateKeyDto } from './dto/esp.dto';
+import { CreateCampaignDto, CreateKeyDto } from './dto/esp.dto';
 
 @Controller('esp-api-keys')
 export class EspApiKeysController {
@@ -20,5 +20,12 @@ export class EspApiKeysController {
     createKey(@Body() dto: CreateKeyDto, @Req() req, @Res() res: Response) {
         const userId = req.user.sub;
         return this.ESPService.createkey(dto, userId, res);
+    }
+
+    @Post('createCampaign')
+    @UseGuards(AuthGuard)
+    createCampaign(@Body() dto: CreateCampaignDto, @Req() req, @Res() res: Response ) {
+        const userId = req.user.sub;
+        return this.ESPService.createCampaign(dto, userId, res)
     }
 }

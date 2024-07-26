@@ -1,7 +1,8 @@
-import { BadRequestException, Injectable } from '@nestjs/common';
+import { BadGatewayException, BadRequestException, Injectable } from '@nestjs/common';
 import { Response } from 'express';
 import { PrismaService } from 'src/prisma/prisma.service';
-import { ManualEditSessionDto, SaveSessionDto, SessionFromTemplateDto } from './dto/editor.dto';
+import { GetImageDto, ManualEditSessionDto, SaveSessionDto, SessionFromTemplateDto } from './dto/editor.dto';
+import puppeteer from 'puppeteer';
 
 @Injectable()
 export class EditorService {
@@ -70,5 +71,68 @@ export class EditorService {
 
         if (!editSession) return new BadRequestException('Failed to create session');
         return res.send({ message: 'Success', editSession }).status(200);
+    }
+
+    async htmlToImage(dto: GetImageDto, res: Response) {
+        const { html } = dto
+        const browser = await puppeteer.launch();
+        console.log('Browser Launched')
+        const page = await browser.newPage();
+        console.log('New Page')
+        try {
+            // Set the content of the page
+            await page.setContent(html, { waitUntil: 'networkidle0' });
+            
+            // Set viewport size to match the content
+            const dimensions = await page.evaluate(() => {
+                return {
+                width: document.documentElement.offsetWidth,
+                height: document.documentElement.offsetHeight,
+                };
+            });
+            await page.setViewport(dimensions);
+            
+            // Capture the screenshot
+            const screenshot = await page.screenshot({ path: 'output.png', fullPage: true });
+            console.log('Screenshot captured')
+
+            res.set('Content-Type', 'image/png');
+            res.send(screenshot);        
+        } catch (error) {
+            console.log(error)
+            return new BadGatewayException(error)
+        } finally {
+            await browser.close()
+        }
+
+          
+    }
+
+    async htmlToImageSave(html: string) {
+        const browser = await puppeteer.launch();
+        console.log('Browser Launched')
+        const page = await browser.newPage();
+        console.log('New Page')
+        try {
+            // Set the content of the page
+            await page.setContent(html, { waitUntil: 'networkidle0' });
+            
+            // Set viewport size to match the content
+            const dimensions = await page.evaluate(() => {
+                return {
+                width: document.documentElement.offsetWidth,
+                height: document.documentElement.offsetHeight,
+                };
+            });
+            await page.setViewport(dimensions);
+            
+            // Capture the screenshot
+            const screenshot = await page.screenshot({ path: 'output.png', fullPage: true });
+        } catch {
+
+        } finally {
+            await browser.close()
+        }
+
     }
 }

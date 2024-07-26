@@ -52,6 +52,7 @@ model editor {
   brand_id String?
   product_id String?
   email_saves Json[]
+  preview_image_src String?
   created_at DateTime @default(now())
 }
 
@@ -69,5 +70,19 @@ model ESP {
   label String
   user_id String 
   provider String
+  created_at DateTime @default(now())
+}
+
+model KlaviyoTemplates {
+  id String @default(uuid()) @unique @id
+  template_id String @unique
+  user_id String 
+  created_at DateTime @default(now())
+}
+
+model KlaviyoCampaigns {
+  id String @default(uuid()) @unique @id
+  user_id String
+  campaign_id String @unique
   created_at DateTime @default(now())
 }

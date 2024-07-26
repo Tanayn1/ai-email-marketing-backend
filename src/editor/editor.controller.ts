@@ -1,7 +1,7 @@
 import { Body, Controller, Get, Param, Post, Req, Res, UseGuards } from '@nestjs/common';
 import { EditorService } from './editor.service';
 import { AuthGuard } from 'src/auth/auth.guard';
-import { ManualEditSessionDto, SaveSessionDto } from './dto/editor.dto';
+import { GetImageDto, ManualEditSessionDto, SaveSessionDto } from './dto/editor.dto';
 import { Response } from 'express';
 
 @Controller('editor')
@@ -33,6 +33,12 @@ export class EditorController {
     @UseGuards(AuthGuard)
     saveEmail(@Body() dto: SaveSessionDto, @Req() req, @Res() res: Response ) {
         return this.editorService.saveSession(dto, res)
+    }
+
+    @Post('htmlToImage')
+    @UseGuards(AuthGuard)
+    getImage(@Body() dto: GetImageDto, @Req() req, @Res() res: Response) {
+        return this.editorService.htmlToImage(dto, res)
     }
 
 }
