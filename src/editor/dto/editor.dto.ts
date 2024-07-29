@@ -18,6 +18,9 @@ export class SaveSessionDto {
 
     @IsNotEmpty()
     json_array: Array<any>
+
+    @IsNotEmpty()
+    html: string
 }
 
 export class SessionFromTemplateDto {

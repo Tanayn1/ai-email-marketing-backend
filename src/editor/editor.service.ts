@@ -3,10 +3,11 @@ import { Response } from 'express';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { GetImageDto, ManualEditSessionDto, SaveSessionDto, SessionFromTemplateDto } from './dto/editor.dto';
 import puppeteer from 'puppeteer';
+import { AwsService } from 'src/aws/aws.service';
 
 @Injectable()
 export class EditorService {
-    constructor(private prisma: PrismaService) {}
+    constructor(private prisma: PrismaService, private aws: AwsService) {}
 
     async manualEditingSession(userId: string, dto : ManualEditSessionDto, res : Response) {
         const { product_id, product_name, brand_id } = dto;
@@ -42,10 +43,12 @@ export class EditorService {
     }
 
     async saveSession(dto : SaveSessionDto, res: Response) {
-        const { session_id, json_array } = dto;
-
+        const { session_id, json_array, html } = dto;
+        const session = await this.prisma.editor.findUnique({ where: { id: session_id } });
+        const previewUrl = await this.htmlToImageSave(html, session.id);
         const updatedEditSession = await this.prisma.editor.update({ where: { id: session_id }, data: {
-            email_saves: json_array
+            email_saves: json_array,
+            preview_image_src: previewUrl
         } });
         
         return res.send({message: 'Success', updatedEditSession})
@@ -108,7 +111,7 @@ export class EditorService {
           
     }
 
-    async htmlToImageSave(html: string) {
+    async htmlToImageSave(html: string, fileName: string) {
         const browser = await puppeteer.launch();
         console.log('Browser Launched')
         const page = await browser.newPage();
@@ -126,8 +129,12 @@ export class EditorService {
             });
             await page.setViewport(dimensions);
             
+            const filePath = `${fileName}.png`
             // Capture the screenshot
-            const screenshot = await page.screenshot({ path: 'output.png', fullPage: true });
+            const screenshot = await page.screenshot({ path: filePath, fullPage: true });
+            const url = await this.aws.uploadFileExport(filePath, fileName);
+            console.log(url)
+            return url
         } catch {
 
         } finally {
