@@ -29,4 +29,10 @@ export class BrandsController {
        const userId = req.user.sub;
        return this.brandsService.getBrandById(userId, brandId, res)
     }
+
+    // @Post('test')
+    // test(@Body() dto: { url: string }, @Req() req, @Res() res : Response ) {
+    //     const { url } = dto
+    //     return this.brandsService.scrapeColors(url)
+    // }
 }

@@ -1,5 +1,5 @@
 import { BadRequestException, Injectable, UnauthorizedException } from '@nestjs/common';
-import puppeteer from 'puppeteer';
+import puppeteer, { Page } from 'puppeteer';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { ScrapeBrands } from './dto/brands.dto';
 import { Response } from 'express';
@@ -103,66 +103,68 @@ export class BrandsService {
 
 
 
-            //scrape colors
-            const colors = await page.evaluate(()=>{
-                const colorSet = new Set();
-                const elements = document.querySelectorAll('*');
+            // //scrape colors
+            // const colors = await page.evaluate(()=>{
+            //     const colorSet = new Set();
+            //     const elements = document.querySelectorAll('*');
 
-                elements.forEach(el =>{
-                    const style = window.getComputedStyle(el);
-                    colorSet.add({
-                        color: style.color,
-                        backgroundColor: style.backgroundColor
-                    })
-                })
-                const colorsArray = Array.from(colorSet)
+            //     elements.forEach(el =>{
+            //         const style = window.getComputedStyle(el);
+            //         colorSet.add({
+            //             color: style.color,
+            //             backgroundColor: style.backgroundColor
+            //         })
+            //     })
+            //     const colorsArray = Array.from(colorSet)
                 
-                function processColors(data) {
-                    const colorMap = new Map();
-                    const backgroundColors = new Map()
+            //     function processColors(data) {
+            //         const colorMap = new Map();
+            //         const backgroundColors = new Map()
                   
-                    data.forEach(item => {
-                      // Process color
-                      if (!colorMap.has(item.color)) {
-                        colorMap.set(item.color, { color: item.color, count: 0, backgroundColor: false });
-                      }
-                      colorMap.get(item.color).count++;
+            //         data.forEach(item => {
+            //           // Process color
+            //           if (!colorMap.has(item.color)) {
+            //             colorMap.set(item.color, { color: item.color, count: 0, backgroundColor: false });
+            //           }
+            //           colorMap.get(item.color).count++;
                   
-                      // Process backgroundColor
-                      if (item.backgroundColor !== "rgba(0, 0, 0, 0)") {
-                        if (!backgroundColors.has(item.backgroundColor)) {
-                          backgroundColors.set(item.backgroundColor, { color: item.backgroundColor, count: 0, backgroundColor: true });
-                        }
-                        backgroundColors.get(item.backgroundColor).count++;
-                        backgroundColors.get(item.backgroundColor).backgroundColor = true;
-                      }
-                    });
+            //           // Process backgroundColor
+            //           if (item.backgroundColor !== "rgba(0, 0, 0, 0)") {
+            //             if (!backgroundColors.has(item.backgroundColor)) {
+            //               backgroundColors.set(item.backgroundColor, { color: item.backgroundColor, count: 0, backgroundColor: true });
+            //             }
+            //             backgroundColors.get(item.backgroundColor).count++;
+            //             backgroundColors.get(item.backgroundColor).backgroundColor = true;
+            //           }
+            //         });
 
-                    return {colors: Array.from(colorMap.values()), backgroundColors: Array.from(backgroundColors.values())};
-                };
-                const { colors, backgroundColors } = processColors(colorsArray);
-                colors.sort((a, b) => b.count - a.count);
-                backgroundColors.sort((a, b) => b.count - a.count);
+            //         return {colors: Array.from(colorMap.values()), backgroundColors: Array.from(backgroundColors.values())};
+            //     };
+            //     const { colors, backgroundColors } = processColors(colorsArray);
+            //     colors.sort((a, b) => b.count - a.count);
+            //     backgroundColors.sort((a, b) => b.count - a.count);
 
 
-                return { colors, backgroundColors }
-            });
+            //     return { colors, backgroundColors }
+            // });
 
             const fontObj : any =  {             
               primaryFont: fonts.MostUsedPrimaryFont,
               secondaryFont: fonts.MostUsedSecondaryFont
             }
             
-            const colorObj = {
-              colors: {
-                primaryColor: colors.colors[0].color,
-                secondaryColors: [...colors.colors]
-              },
-              backgroundColors: {
-                primaryColor: colors.backgroundColors[0].color,
-                secondaryColors: [...colors.backgroundColors]
-              }
-            }
+            // const colorObj = {
+            //   colors: {
+            //     primaryColor: colors.colors[0].color,
+            //     secondaryColors: [...colors.colors]
+            //   },
+            //   backgroundColors: {
+            //     primaryColor: colors.backgroundColors[0].color,
+            //     secondaryColors: [...colors.backgroundColors]
+            //   }
+            // }
+
+            const colorObj = await this.scrapeColors(page)
 
             const brand = await this.prisma.brands.create({data: {
               user_id: userId,
@@ -195,4 +197,64 @@ export class BrandsService {
         return new UnauthorizedException('User is not authorized to access this store');
       }
     }
+
+
+    async scrapeColors(page: Page) {
+      // const browser = await puppeteer.launch();
+      // console.log('Browser Opened')
+      try {
+        // const page = await browser.newPage()
+        // page.setDefaultNavigationTimeout(2 * 60 * 1000);
+        // await Promise.all([
+        //     page.waitForNavigation(),
+        //     page.goto(url)
+        // ])
+        // console.log('Navigated to url')
+        const colors = await page.evaluate(() => {
+          function rgbToHex(r, g, b) {
+            return "#" + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1);
+          }
+  
+          function getColorFrequency() {
+            const elements = document.body.getElementsByTagName('*');
+            const colorMap = {};
+  
+            for (let element of elements) {
+              const style = window.getComputedStyle(element);
+              const bgColor = style.backgroundColor;
+              const textColor = style.color;
+  
+              if (bgColor !== 'rgba(0, 0, 0, 0)' && bgColor !== 'transparent') {
+                colorMap[bgColor] = (colorMap[bgColor] || 0) + 1;
+              }
+              colorMap[textColor] = (colorMap[textColor] || 0) + 1;
+            }
+  
+            return Object.entries(colorMap)
+              .sort((a : any, b: any) => b[1] - a[1])
+              .map(([color]) => color);
+          }
+  
+          const colorFrequency = getColorFrequency();
+  
+          return {
+            textColor: colorFrequency[0] || null,
+            buttonColor: colorFrequency[1] || null,
+            backgroundColor: colorFrequency[2] || null,
+            secondaryBackgroundColor: colorFrequency[3] || null
+          };
+        });
+        console.log(colors)
+        return colors;
+      } catch (error) {
+        console.log(error)
+       } //finally {
+      //    await browser.close();
+      // }
+
+
+     
+  }
+
+
 }

@@ -16,6 +16,13 @@ export interface Colors {
     }
 }
 
+export interface Colors2 {
+    textColor: string,
+    buttonColor: string,
+    backgroundColor: string,
+    secondaryBackgroundColor: string
+}
+
 export interface EmailSave {
     save: string,
     updated_at: string
