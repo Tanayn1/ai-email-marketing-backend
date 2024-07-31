@@ -5,18 +5,18 @@ export interface Fonts {
     secondaryFont: string
 }
 
-export interface Colors {
-    colors: {
-        primaryColor: string,
-        secondaryColors: Array<any>
-    },
-    backgroundColors: {        
-        primaryColor: string,
-        secondaryColors: Array<any>
-    }
-}
+// export interface Colors {
+//     colors: {
+//         primaryColor: string,
+//         secondaryColors: Array<any>
+//     },
+//     backgroundColors: {        
+//         primaryColor: string,
+//         secondaryColors: Array<any>
+//     }
+// }
 
-export interface Colors2 {
+export interface Colors {
     textColor: string,
     buttonColor: string,
     backgroundColor: string,

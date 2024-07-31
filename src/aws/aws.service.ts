@@ -26,15 +26,35 @@ export class AwsService {
           return res.send({message: "Success", src: `https://mailspark.s3.amazonaws.com/${file.originalname}`}).status(200)
     }
 
-    async uploadFileExport(filePath: string, fileName: string) {
+    async uploadFileExport(filePath: string, fileName: string, contentType : 'image/png' | 'image/svg+xml') {
         try {
+            
             const fileContent = fs.readFileSync(filePath);
             await this.s3Client.send(
                 new PutObjectCommand({
                     Bucket: 'mailspark',
                     Key: fileName,
                     Body: fileContent,
-                    ContentType: 'image/png'
+                    ContentType: contentType 
+                })
+            )
+            
+              return `https://mailspark.s3.amazonaws.com/${fileName}`
+        } catch (error) {
+            console.log(error)
+        }
+
+    }
+
+    async uploadFileSVGorImg(fileContent: string | Buffer, fileName: string, contentType : 'image/png' | 'image/svg+xml') {
+        try {
+            
+            await this.s3Client.send(
+                new PutObjectCommand({
+                    Bucket: 'mailspark',
+                    Key: fileName,
+                    Body: fileContent,
+                    ContentType: contentType 
                 })
             )
             

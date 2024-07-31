@@ -1,5 +1,5 @@
 import { Body, Controller, Get, Param, Post, Req, Res, UseGuards } from '@nestjs/common';
-import { ScrapeBrands } from './dto/brands.dto';
+import { AddLogoDto, ScrapeBrands, UpdateBrandsDto } from './dto/brands.dto';
 import { Request, Response } from 'express';
 import { BrandsService } from './brands.service';
 import { AuthGuard } from 'src/auth/auth.guard';
@@ -29,6 +29,20 @@ export class BrandsController {
        const userId = req.user.sub;
        return this.brandsService.getBrandById(userId, brandId, res)
     }
+
+    @Post('addLogo')
+    @UseGuards(AuthGuard)
+    addLogo(@Body() dto: AddLogoDto, @Req() req, @Res() res : Response) {
+        const userId = req.user.sub;
+        return this.brandsService.addLogo(dto, userId, res)
+    }
+
+    @Post('updateBrand')
+    @UseGuards(AuthGuard)
+    updateBrand(@Body() dto: UpdateBrandsDto,@Req() req, @Res() res : Response) {
+        const userId = req.user.sub;
+        return this.brandsService.updateBrands(dto, userId, res)
+    } 
 
     // @Post('test')
     // test(@Body() dto: { url: string }, @Req() req, @Res() res : Response ) {

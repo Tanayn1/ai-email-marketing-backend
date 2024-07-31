@@ -25,7 +25,7 @@ model Brands {
   id String @default(uuid()) @unique @id
   user_id String 
   brand_name String
-  logo String?
+  logos String[]
   colors Json?
   fonts Json?
   brand_url String?

@@ -132,7 +132,7 @@ export class EditorService {
             const filePath = `${fileName}.png`
             // Capture the screenshot
             const screenshot = await page.screenshot({ path: filePath, fullPage: true });
-            const url = await this.aws.uploadFileExport(filePath, fileName);
+            const url = await this.aws.uploadFileExport(filePath, fileName, 'image/png');
             console.log(url)
             return url
         } catch {

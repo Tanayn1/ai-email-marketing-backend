@@ -134,10 +134,10 @@ export class AiService {
         const fonts = brand.fonts as unknown as Fonts
         const colors = brand.colors as unknown as Colors
         const preFill = {
-            text_color: colors.colors.primaryColor,
-            button_color: colors.colors.secondaryColors[0],
-            button_text_color: colors.colors.secondaryColors[1] ?? colors.colors.primaryColor ,
-            background_color: colors.backgroundColors.primaryColor,
+            text_color: colors.textColor,
+            button_color: colors.buttonColor,
+            button_text_color: colors.textColor ,
+            background_color: colors.backgroundColor,
             font_header: fonts.primaryFont,
             font_text: fonts.secondaryFont
         };

@@ -1,12 +1,16 @@
 import { BadRequestException, Injectable, UnauthorizedException } from '@nestjs/common';
 import puppeteer, { Page } from 'puppeteer';
 import { PrismaService } from 'src/prisma/prisma.service';
-import { ScrapeBrands } from './dto/brands.dto';
+import { AddLogoDto, ScrapeBrands, UpdateBrandsDto } from './dto/brands.dto';
 import { Response } from 'express';
+import { AwsService } from 'src/aws/aws.service';
+import axios from 'axios';
+import * as sharp from 'sharp';
+
 
 @Injectable()
 export class BrandsService {
-    constructor(private prisma: PrismaService) {}
+    constructor(private prisma: PrismaService, private aws: AwsService) {}
 
     async scrapeForBranding(dto : ScrapeBrands, res : Response, userId :string) {
         const { url, brandName } = dto 
@@ -20,7 +24,7 @@ export class BrandsService {
             page.goto(url)
         ])
         console.log('Navigated to url')
-        
+        console.log('Starting logo processing...');
         //scrape logo
         const logoSelectors : Array<string> = [
             'img[alt*="logo"]', 'svg[alt*="logo"]', '[id*="logo"] img', 
@@ -37,17 +41,34 @@ export class BrandsService {
                 if (element) {
                  // For <img> tags, return the 'src' attribute
                  if (element instanceof HTMLImageElement) {
-                     return element.src;
-                 }
+                  return { type: 'img', src: element.src };                 
+                }
                  // For <svg> tags, return the outer HTML as a fallback
                  if (element instanceof SVGElement) {
-                     return element.outerHTML;
-                 }
+                  return { type: 'svg', content: element.outerHTML };
+                }
              }
              }, selector);
              if (logo) break            
         }
-        
+        console.log('Logo scraping result:', logo);
+        let logosrc = null
+        if (logo.type === 'img') {
+          const response = await axios.get(logo.src, { responseType: 'arraybuffer' });
+          const buffer = Buffer.from(response.data, 'binary');
+          logosrc = await this.aws.uploadFileSVGorImg(buffer, `${brandName}_logo`, 'image/png')
+        } else if (logo.type === 'svg') {
+          try {
+            const buffer = await sharp(Buffer.from(logo.content))
+            .png()
+            .toBuffer();
+            logosrc = await this.aws.uploadFileSVGorImg(buffer, `${brandName}_logo`, 'image/png')
+          } catch (error) {
+            console.log(error)
+          }
+
+        }
+        console.log('Successfully uploaded to S3:', logosrc);
 
 
         //scrape fonts
@@ -169,7 +190,7 @@ export class BrandsService {
             const brand = await this.prisma.brands.create({data: {
               user_id: userId,
               brand_name: brandName,
-              logo: logo,
+              logos: [logosrc],
               fonts: fontObj,
               colors: colorObj,
               brand_url: url
@@ -256,5 +277,24 @@ export class BrandsService {
      
   }
 
+    async addLogo(dto: AddLogoDto, user_id: string,  res: Response) {
+      const { brandId, logo } = dto;
+      const brand = await this.prisma.brands.findUnique({ where: {id: brandId } });
+      if (!brand) return new BadRequestException(`Brand with id: ${brandId} does not exist`);
+      const updatedBrand = await this.prisma.brands.update({ where: { id: brandId }, data: { logos: [...brand.logos, logo] } })
+      return res.send({ message: 'Success', updatedBrand }).status(200)
+    }
+
+    async updateBrands(dto: UpdateBrandsDto, user_id: string,  res: Response) {
+      const { brandName, fonts, colors, logos, brandId } = dto;
+      const updatedBrand = await this.prisma.brands.update({ where: {id: brandId}, data: {
+        brand_name: brandName,
+        fonts: JSON.stringify(fonts),
+        colors: JSON.stringify(colors),
+        logos: logos
+      } });
+
+      return res.send({ message: 'Success', updatedBrand }).status(200);
+    }
 
 }
