@@ -64,4 +64,17 @@ export class AwsService {
         }
 
     }
+
+    async uploadFileWithoutRes(file: Express.Multer.File) {
+        console.log(file)
+        await this.s3Client.send(
+            new PutObjectCommand({
+                Bucket: 'mailspark',
+                Key: file.originalname,
+                Body: file.buffer,
+                ContentType: file.mimetype
+            })
+        )
+          return `https://mailspark.s3.amazonaws.com/${file.originalname}`
+    }
 }

@@ -3,6 +3,7 @@ import OpenAI from 'openai';
 import { GenerateEmailDto } from './dto/ai.dto';
 import { Response } from 'express';
 import * as template from  '../email-templates/testEmail.json' 
+import * as salesTemplate from '../email-templates/template1.json'
 import { PrismaService } from 'src/prisma/prisma.service';
 import { Brands, Products } from '@prisma/client';
 import { encodeBase64, compress } from "lzutf8";

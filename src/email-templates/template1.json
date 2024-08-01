@@ -1,0 +1,1021 @@
+{
+    "ROOT": {
+      "type": {
+        "resolvedName": "CanvasContainer"
+      },
+      "isCanvas": true,
+      "props": {
+        "backgroundColor": "#ffffff"
+      },
+      "displayName": "CanvasContainer",
+      "custom": {},
+      "hidden": false,
+      "nodes": [
+        "vaDMb2eEHT",
+        "w7jY6bDJ6Z",
+        "Q3G0CfjTN0",
+        "lsqM6LOx8Q",
+        "kNHAydxX6s",
+        "7Wr_7bE-AD",
+        "1LPBE1zc2H"
+      ],
+      "linkedNodes": {}
+    },
+    "w7jY6bDJ6Z": {
+      "type": {
+        "resolvedName": "CustomisableContainer"
+      },
+      "isCanvas": true,
+      "props": {
+        "id": "container",
+        "marginT": 0,
+        "marginB": 0,
+        "marginR": 0,
+        "marginl": 0,
+        "height": "600",
+        "width": 700,
+        "paddingT": 0,
+        "paddingR": 0,
+        "paddingl": 0,
+        "paddingB": 0,
+        "alignX": "center",
+        "alignY": "center",
+        "flexDirection": "column",
+        "backgroundColor": "linear-gradient(0deg, #ffffff, #e52424)",
+        "borderRadius": 0
+      },
+      "displayName": "CustomisableContainer",
+      "custom": {
+        "displayName": ""
+      },
+      "parent": "ROOT",
+      "hidden": false,
+      "nodes": [
+        "DFXaXIN4XK"
+      ],
+      "linkedNodes": {}
+    },
+    "DFXaXIN4XK": {
+      "type": {
+        "resolvedName": "Hero"
+      },
+      "isCanvas": false,
+      "props": {},
+      "displayName": "Hero",
+      "custom": {},
+      "parent": "w7jY6bDJ6Z",
+      "hidden": false,
+      "nodes": [],
+      "linkedNodes": {
+        "hero": "Gn9sxezqGI"
+      }
+    },
+    "Gn9sxezqGI": {
+      "type": "div",
+      "isCanvas": true,
+      "props": {},
+      "displayName": "div",
+      "custom": {},
+      "parent": "DFXaXIN4XK",
+      "hidden": false,
+      "nodes": [
+        "ea5H6jMJ5Q",
+        "DrB9AztZhq",
+        "iHUCYXnRTU"
+      ],
+      "linkedNodes": {}
+    },
+    "ea5H6jMJ5Q": {
+      "type": {
+        "resolvedName": "Text"
+      },
+      "isCanvas": false,
+      "props": {
+        "paddingT": 40,
+        "paddingR": 0,
+        "paddingl": 0,
+        "paddingB": 0,
+        "fontFamily": "Arial",
+        "textColor": "#000000",
+        "italic": false,
+        "fontWeight": 600,
+        "align": "center",
+        "text": "{{heading}}",
+        "fontSize": 40
+      },
+      "displayName": "Text",
+      "custom": {},
+      "parent": "Gn9sxezqGI",
+      "hidden": false,
+      "nodes": [],
+      "linkedNodes": {}
+    },
+    "DrB9AztZhq": {
+      "type": {
+        "resolvedName": "DraggableImage"
+      },
+      "isCanvas": false,
+      "props": {
+        "width": 260,
+        "height": 260,
+        "align": "center",
+        "marginB": 0,
+        "marginT": 20,
+        "marginR": 0,
+        "marginl": 0
+      },
+      "displayName": "DraggableImage",
+      "custom": {},
+      "parent": "Gn9sxezqGI",
+      "hidden": false,
+      "nodes": [],
+      "linkedNodes": {}
+    },
+    "iHUCYXnRTU": {
+      "type": {
+        "resolvedName": "DraggableButton"
+      },
+      "isCanvas": false,
+      "props": {
+        "fontSize": 20,
+        "fontWeight": 500,
+        "borderRadius": 10,
+        "align": "center",
+        "marginT": 20,
+        "marginB": 0,
+        "marginR": 0,
+        "marginl": 0,
+        "paddingT": 10,
+        "paddingR": 20,
+        "paddingl": 20,
+        "paddingB": 10,
+        "backgroundColor": "#09203f",
+        "textColor": "#FFFFFF",
+        "text": "{{button_cta}}"
+      },
+      "displayName": "DraggableButton",
+      "custom": {},
+      "parent": "Gn9sxezqGI",
+      "hidden": false,
+      "nodes": [],
+      "linkedNodes": {}
+    },
+    "Q3G0CfjTN0": {
+      "type": {
+        "resolvedName": "Text"
+      },
+      "isCanvas": false,
+      "props": {
+        "paddingT": 0,
+        "paddingR": 0,
+        "paddingl": 0,
+        "paddingB": 0,
+        "fontFamily": "Arial",
+        "textColor": "#000000",
+        "italic": false,
+        "fontWeight": 400,
+        "align": "center",
+        "text": "{{product_description}}",
+        "fontSize": 20
+      },
+      "displayName": "Text",
+      "custom": {},
+      "parent": "ROOT",
+      "hidden": false,
+      "nodes": [],
+      "linkedNodes": {}
+    },
+    "lsqM6LOx8Q": {
+      "type": {
+        "resolvedName": "Text"
+      },
+      "isCanvas": false,
+      "props": {
+        "paddingT": "70",
+        "paddingR": 0,
+        "paddingl": 0,
+        "paddingB": "0",
+        "fontFamily": "Arial",
+        "textColor": "#000000",
+        "italic": false,
+        "fontWeight": 600,
+        "align": "center",
+        "text": "Shop Additional Products",
+        "fontSize": "34"
+      },
+      "displayName": "Text",
+      "custom": {},
+      "parent": "ROOT",
+      "hidden": false,
+      "nodes": [],
+      "linkedNodes": {}
+    },
+    "7Wr_7bE-AD": {
+      "type": {
+        "resolvedName": "Text"
+      },
+      "isCanvas": false,
+      "props": {
+        "paddingT": 0,
+        "paddingR": 0,
+        "paddingl": 0,
+        "paddingB": 0,
+        "fontFamily": "Arial",
+        "textColor": "#000000",
+        "italic": false,
+        "fontWeight": 400,
+        "align": "center",
+        "text": "{{brand_description}}",
+        "fontSize": 20
+      },
+      "displayName": "Text",
+      "custom": {},
+      "parent": "ROOT",
+      "hidden": false,
+      "nodes": [],
+      "linkedNodes": {}
+    },
+    "kNHAydxX6s": {
+      "type": {
+        "resolvedName": "ShopProducts"
+      },
+      "isCanvas": false,
+      "props": {},
+      "displayName": "ShopProducts",
+      "custom": {},
+      "parent": "ROOT",
+      "hidden": false,
+      "nodes": [],
+      "linkedNodes": {
+        "row_one": "c30lpV0gCN",
+        "row_two": "rhybKjwoIW"
+      }
+    },
+    "c30lpV0gCN": {
+      "type": {
+        "resolvedName": "CustomisableContainer"
+      },
+      "isCanvas": false,
+      "props": {
+        "marginT": 0,
+        "marginB": 0,
+        "marginR": 0,
+        "marginl": 0,
+        "height": 230,
+        "width": 700,
+        "paddingT": 0,
+        "paddingR": 0,
+        "paddingl": 0,
+        "paddingB": 0,
+        "alignX": "center",
+        "alignY": "center",
+        "flexDirection": "row",
+        "backgroundColor": "",
+        "borderRadius": 0
+      },
+      "displayName": "CustomisableContainer",
+      "custom": {},
+      "parent": "kNHAydxX6s",
+      "hidden": false,
+      "nodes": [
+        "MmFWGXAItL",
+        "kFHb9mLi4W"
+      ],
+      "linkedNodes": {}
+    },
+    "MmFWGXAItL": {
+      "type": {
+        "resolvedName": "CustomisableContainer"
+      },
+      "isCanvas": false,
+      "props": {
+        "id": "shop_product1",
+        "marginT": 0,
+        "marginB": 0,
+        "marginR": 0,
+        "marginl": 0,
+        "height": 225,
+        "width": 180,
+        "paddingT": 0,
+        "paddingR": 0,
+        "paddingl": 0,
+        "paddingB": 0,
+        "alignX": "center",
+        "alignY": "center",
+        "flexDirection": "column",
+        "backgroundColor": "",
+        "borderRadius": 0
+      },
+      "displayName": "CustomisableContainer",
+      "custom": {},
+      "parent": "c30lpV0gCN",
+      "hidden": false,
+      "nodes": [
+        "e9c93VAswE",
+        "d5oeS190Bn",
+        "atBr7Pj_R2"
+      ],
+      "linkedNodes": {}
+    },
+    "e9c93VAswE": {
+      "type": {
+        "resolvedName": "DraggableImage"
+      },
+      "isCanvas": false,
+      "props": {
+        "marginT": 0,
+        "marginB": 0,
+        "marginR": 0,
+        "marginl": 0,
+        "height": 160,
+        "width": 160,
+        "align": "start"
+      },
+      "displayName": "DraggableImage",
+      "custom": {},
+      "parent": "MmFWGXAItL",
+      "hidden": false,
+      "nodes": [],
+      "linkedNodes": {}
+    },
+    "d5oeS190Bn": {
+      "type": {
+        "resolvedName": "Text"
+      },
+      "isCanvas": false,
+      "props": {
+        "paddingT": 0,
+        "paddingR": 0,
+        "paddingl": 0,
+        "paddingB": 0,
+        "fontFamily": "Arial",
+        "textColor": "#000000",
+        "italic": false,
+        "fontWeight": 400,
+        "align": "start",
+        "text": "Product One",
+        "fontSize": "11"
+      },
+      "displayName": "Text",
+      "custom": {},
+      "parent": "MmFWGXAItL",
+      "hidden": false,
+      "nodes": [],
+      "linkedNodes": {}
+    },
+    "atBr7Pj_R2": {
+      "type": {
+        "resolvedName": "DraggableButton"
+      },
+      "isCanvas": false,
+      "props": {
+        "fontSize": 20,
+        "fontWeight": 500,
+        "borderRadius": 10,
+        "align": "center",
+        "marginT": 0,
+        "marginB": 0,
+        "marginR": 0,
+        "marginl": 0,
+        "paddingT": 10,
+        "paddingR": 10,
+        "paddingl": 10,
+        "paddingB": 10,
+        "fontFamily": "Arial",
+        "backgroundColor": "#00000",
+        "textColor": "#00000",
+        "text": "SHOP NOW"
+      },
+      "displayName": "DraggableButton",
+      "custom": {},
+      "parent": "MmFWGXAItL",
+      "hidden": false,
+      "nodes": [],
+      "linkedNodes": {}
+    },
+    "kFHb9mLi4W": {
+      "type": {
+        "resolvedName": "CustomisableContainer"
+      },
+      "isCanvas": false,
+      "props": {
+        "id": "shop_product2",
+        "marginT": 0,
+        "marginB": 0,
+        "marginR": 0,
+        "marginl": 0,
+        "height": 225,
+        "width": 180,
+        "paddingT": 0,
+        "paddingR": 0,
+        "paddingl": 0,
+        "paddingB": 0,
+        "alignX": "center",
+        "alignY": "center",
+        "flexDirection": "column",
+        "backgroundColor": "",
+        "borderRadius": 0
+      },
+      "displayName": "CustomisableContainer",
+      "custom": {},
+      "parent": "c30lpV0gCN",
+      "hidden": false,
+      "nodes": [
+        "K5cDokP52l",
+        "NbRtIsCW47",
+        "jKGK9zG4_6"
+      ],
+      "linkedNodes": {}
+    },
+    "K5cDokP52l": {
+      "type": {
+        "resolvedName": "DraggableImage"
+      },
+      "isCanvas": false,
+      "props": {
+        "marginT": 0,
+        "marginB": 0,
+        "marginR": 0,
+        "marginl": 0,
+        "height": 160,
+        "width": 160,
+        "align": "start"
+      },
+      "displayName": "DraggableImage",
+      "custom": {},
+      "parent": "kFHb9mLi4W",
+      "hidden": false,
+      "nodes": [],
+      "linkedNodes": {}
+    },
+    "NbRtIsCW47": {
+      "type": {
+        "resolvedName": "Text"
+      },
+      "isCanvas": false,
+      "props": {
+        "paddingT": 0,
+        "paddingR": 0,
+        "paddingl": 0,
+        "paddingB": 0,
+        "fontFamily": "Arial",
+        "textColor": "#000000",
+        "italic": false,
+        "fontWeight": 400,
+        "align": "start",
+        "text": "Product Two",
+        "fontSize": "11"
+      },
+      "displayName": "Text",
+      "custom": {},
+      "parent": "kFHb9mLi4W",
+      "hidden": false,
+      "nodes": [],
+      "linkedNodes": {}
+    },
+    "jKGK9zG4_6": {
+      "type": {
+        "resolvedName": "DraggableButton"
+      },
+      "isCanvas": false,
+      "props": {
+        "fontSize": 20,
+        "fontWeight": 500,
+        "borderRadius": 10,
+        "align": "center",
+        "marginT": 0,
+        "marginB": 0,
+        "marginR": 0,
+        "marginl": 0,
+        "paddingT": 10,
+        "paddingR": 10,
+        "paddingl": 10,
+        "paddingB": 10,
+        "fontFamily": "Arial",
+        "backgroundColor": "#00000",
+        "textColor": "#00000",
+        "text": "SHOP NOW"
+      },
+      "displayName": "DraggableButton",
+      "custom": {},
+      "parent": "kFHb9mLi4W",
+      "hidden": false,
+      "nodes": [],
+      "linkedNodes": {}
+    },
+    "rhybKjwoIW": {
+      "type": {
+        "resolvedName": "CustomisableContainer"
+      },
+      "isCanvas": false,
+      "props": {
+        "marginT": 0,
+        "marginB": 10,
+        "marginR": 0,
+        "marginl": 0,
+        "height": "230",
+        "width": 700,
+        "paddingT": 0,
+        "paddingR": 0,
+        "paddingl": 0,
+        "paddingB": 0,
+        "alignX": "center",
+        "alignY": "center",
+        "flexDirection": "row",
+        "backgroundColor": "",
+        "borderRadius": 0
+      },
+      "displayName": "CustomisableContainer",
+      "custom": {},
+      "parent": "kNHAydxX6s",
+      "hidden": false,
+      "nodes": [
+        "QuRdMpxY6X",
+        "7E1xIVV1Vt"
+      ],
+      "linkedNodes": {}
+    },
+    "QuRdMpxY6X": {
+      "type": {
+        "resolvedName": "CustomisableContainer"
+      },
+      "isCanvas": false,
+      "props": {
+        "id": "shop_product3",
+        "marginT": 0,
+        "marginB": 0,
+        "marginR": 0,
+        "marginl": 0,
+        "height": 225,
+        "width": 180,
+        "paddingT": 0,
+        "paddingR": 0,
+        "paddingl": 0,
+        "paddingB": 0,
+        "alignX": "center",
+        "alignY": "center",
+        "flexDirection": "column",
+        "backgroundColor": "",
+        "borderRadius": 0
+      },
+      "displayName": "CustomisableContainer",
+      "custom": {},
+      "parent": "rhybKjwoIW",
+      "hidden": false,
+      "nodes": [
+        "sIO5fA3Ght",
+        "cDAm4qTmPS",
+        "Jf2YbFIg_-"
+      ],
+      "linkedNodes": {}
+    },
+    "sIO5fA3Ght": {
+      "type": {
+        "resolvedName": "DraggableImage"
+      },
+      "isCanvas": false,
+      "props": {
+        "marginT": 0,
+        "marginB": 0,
+        "marginR": 0,
+        "marginl": 0,
+        "height": 160,
+        "width": 160,
+        "align": "start"
+      },
+      "displayName": "DraggableImage",
+      "custom": {},
+      "parent": "QuRdMpxY6X",
+      "hidden": false,
+      "nodes": [],
+      "linkedNodes": {}
+    },
+    "cDAm4qTmPS": {
+      "type": {
+        "resolvedName": "Text"
+      },
+      "isCanvas": false,
+      "props": {
+        "paddingT": 0,
+        "paddingR": 0,
+        "paddingl": 0,
+        "paddingB": 0,
+        "fontFamily": "Arial",
+        "textColor": "#000000",
+        "italic": false,
+        "fontWeight": 400,
+        "align": "start",
+        "text": "Product Three",
+        "fontSize": "11"
+      },
+      "displayName": "Text",
+      "custom": {},
+      "parent": "QuRdMpxY6X",
+      "hidden": false,
+      "nodes": [],
+      "linkedNodes": {}
+    },
+    "Jf2YbFIg_-": {
+      "type": {
+        "resolvedName": "DraggableButton"
+      },
+      "isCanvas": false,
+      "props": {
+        "fontSize": 20,
+        "fontWeight": 500,
+        "borderRadius": 10,
+        "align": "center",
+        "marginT": 0,
+        "marginB": 0,
+        "marginR": 0,
+        "marginl": 0,
+        "paddingT": 10,
+        "paddingR": 10,
+        "paddingl": 10,
+        "paddingB": 10,
+        "fontFamily": "Arial",
+        "backgroundColor": "#00000",
+        "textColor": "#00000",
+        "text": "SHOP NOW"
+      },
+      "displayName": "DraggableButton",
+      "custom": {},
+      "parent": "QuRdMpxY6X",
+      "hidden": false,
+      "nodes": [],
+      "linkedNodes": {}
+    },
+    "7E1xIVV1Vt": {
+      "type": {
+        "resolvedName": "CustomisableContainer"
+      },
+      "isCanvas": false,
+      "props": {
+        "id": "shop_product4",
+        "marginT": 0,
+        "marginB": 0,
+        "marginR": 0,
+        "marginl": 0,
+        "height": 225,
+        "width": 180,
+        "paddingT": 0,
+        "paddingR": 0,
+        "paddingl": 0,
+        "paddingB": 0,
+        "alignX": "center",
+        "alignY": "center",
+        "flexDirection": "column",
+        "backgroundColor": "",
+        "borderRadius": 0
+      },
+      "displayName": "CustomisableContainer",
+      "custom": {},
+      "parent": "rhybKjwoIW",
+      "hidden": false,
+      "nodes": [
+        "ffpvtI9VqJ",
+        "dRUeo4fiG7",
+        "euem6YxSg4"
+      ],
+      "linkedNodes": {}
+    },
+    "ffpvtI9VqJ": {
+      "type": {
+        "resolvedName": "DraggableImage"
+      },
+      "isCanvas": false,
+      "props": {
+        "marginT": 0,
+        "marginB": 0,
+        "marginR": 0,
+        "marginl": 0,
+        "height": 160,
+        "width": 160,
+        "align": "start"
+      },
+      "displayName": "DraggableImage",
+      "custom": {},
+      "parent": "7E1xIVV1Vt",
+      "hidden": false,
+      "nodes": [],
+      "linkedNodes": {}
+    },
+    "dRUeo4fiG7": {
+      "type": {
+        "resolvedName": "Text"
+      },
+      "isCanvas": false,
+      "props": {
+        "paddingT": "0",
+        "paddingR": 0,
+        "paddingl": 0,
+        "paddingB": "0",
+        "fontFamily": "Arial",
+        "textColor": "#000000",
+        "italic": false,
+        "fontWeight": 400,
+        "align": "start",
+        "text": "Product Four",
+        "fontSize": "11"
+      },
+      "displayName": "Text",
+      "custom": {},
+      "parent": "7E1xIVV1Vt",
+      "hidden": false,
+      "nodes": [],
+      "linkedNodes": {}
+    },
+    "euem6YxSg4": {
+      "type": {
+        "resolvedName": "DraggableButton"
+      },
+      "isCanvas": false,
+      "props": {
+        "fontSize": 20,
+        "fontWeight": 500,
+        "borderRadius": 10,
+        "align": "center",
+        "marginT": 0,
+        "marginB": 0,
+        "marginR": 0,
+        "marginl": 0,
+        "paddingT": 10,
+        "paddingR": 10,
+        "paddingl": 10,
+        "paddingB": 10,
+        "fontFamily": "Arial",
+        "backgroundColor": "#00000",
+        "textColor": "#00000",
+        "text": "SHOP NOW"
+      },
+      "displayName": "DraggableButton",
+      "custom": {},
+      "parent": "7E1xIVV1Vt",
+      "hidden": false,
+      "nodes": [],
+      "linkedNodes": {}
+    },
+    "1LPBE1zc2H": {
+      "type": {
+        "resolvedName": "DraggableFooter"
+      },
+      "isCanvas": false,
+      "props": {},
+      "displayName": "DraggableFooter",
+      "custom": {},
+      "parent": "ROOT",
+      "hidden": false,
+      "nodes": [],
+      "linkedNodes": {
+        "container": "H3qADGDS2U"
+      }
+    },
+    "H3qADGDS2U": {
+      "type": {
+        "resolvedName": "CustomisableContainer"
+      },
+      "isCanvas": false,
+      "props": {
+        "width": 700,
+        "height": 400,
+        "marginT": 0,
+        "marginB": 10,
+        "marginR": 0,
+        "marginl": 0,
+        "paddingT": 0,
+        "paddingR": 0,
+        "paddingl": 0,
+        "paddingB": 0,
+        "alignX": "center",
+        "alignY": "center",
+        "flexDirection": "column",
+        "backgroundColor": "linear-gradient(0deg, #e70d0d, #ffffff)",
+        "borderRadius": 0
+      },
+      "displayName": "CustomisableContainer",
+      "custom": {},
+      "parent": "1LPBE1zc2H",
+      "hidden": false,
+      "nodes": [
+        "PAMaglEYK8",
+        "ceu66ua4W-",
+        "lUvVSsGa1I"
+      ],
+      "linkedNodes": {}
+    },
+    "PAMaglEYK8": {
+      "type": {
+        "resolvedName": "DraggableImage"
+      },
+      "isCanvas": false,
+      "props": {
+        "marginT": 0,
+        "marginB": 0,
+        "marginR": 0,
+        "marginl": 0,
+        "height": 100,
+        "width": 100,
+        "align": "center"
+      },
+      "displayName": "DraggableImage",
+      "custom": {},
+      "parent": "H3qADGDS2U",
+      "hidden": false,
+      "nodes": [],
+      "linkedNodes": {}
+    },
+    "ceu66ua4W-": {
+      "type": {
+        "resolvedName": "DraggableSocials"
+      },
+      "isCanvas": false,
+      "props": {
+        "id": "socials"
+      },
+      "displayName": "DraggableSocials",
+      "custom": {},
+      "parent": "H3qADGDS2U",
+      "hidden": false,
+      "nodes": [],
+      "linkedNodes": {
+        "container": "IYPC147lP4"
+      }
+    },
+    "lUvVSsGa1I": {
+      "type": {
+        "resolvedName": "CustomisableContainer"
+      },
+      "isCanvas": true,
+      "props": {
+        "id": "text_container",
+        "width": 400,
+        "height": 70,
+        "marginT": 0,
+        "marginB": 10,
+        "marginR": 0,
+        "marginl": 0,
+        "paddingT": 0,
+        "paddingR": 0,
+        "paddingl": 0,
+        "paddingB": 0,
+        "alignX": "center",
+        "alignY": "center",
+        "flexDirection": "column",
+        "backgroundColor": "",
+        "borderRadius": 0
+      },
+      "displayName": "CustomisableContainer",
+      "custom": {},
+      "parent": "H3qADGDS2U",
+      "hidden": false,
+      "nodes": [
+        "QpWiTGU6hA"
+      ],
+      "linkedNodes": {}
+    },
+    "QpWiTGU6hA": {
+      "type": {
+        "resolvedName": "Text"
+      },
+      "isCanvas": false,
+      "props": {
+        "paddingT": 0,
+        "paddingR": 0,
+        "paddingl": 0,
+        "paddingB": 0,
+        "fontFamily": "Arial",
+        "textColor": "#000000",
+        "italic": false,
+        "fontWeight": 600,
+        "align": "center",
+        "text": "1234 Pioneer Road Suite 5678 Innovate City, IC 98765 United States",
+        "fontSize": 14
+      },
+      "displayName": "Text",
+      "custom": {},
+      "parent": "lUvVSsGa1I",
+      "hidden": false,
+      "nodes": [],
+      "linkedNodes": {}
+    },
+    "IYPC147lP4": {
+      "type": {
+        "resolvedName": "CustomisableContainer"
+      },
+      "isCanvas": false,
+      "props": {
+        "width": 700,
+        "height": 70,
+        "marginT": 10,
+        "marginB": 10,
+        "marginR": 0,
+        "marginl": 0,
+        "paddingT": 0,
+        "paddingR": 0,
+        "paddingl": 0,
+        "paddingB": 0,
+        "alignX": "center",
+        "alignY": "center",
+        "flexDirection": "row",
+        "backgroundColor": "",
+        "borderRadius": 0
+      },
+      "displayName": "CustomisableContainer",
+      "custom": {},
+      "parent": "ceu66ua4W-",
+      "hidden": false,
+      "nodes": [
+        "Ie0b7JToqp",
+        "IPlQ_o10do",
+        "j8J3z5VMeP"
+      ],
+      "linkedNodes": {}
+    },
+    "Ie0b7JToqp": {
+      "type": {
+        "resolvedName": "DraggableImage"
+      },
+      "isCanvas": false,
+      "props": {
+        "marginT": 0,
+        "marginB": 0,
+        "marginR": 0,
+        "marginl": 0,
+        "height": 60,
+        "width": 60,
+        "align": "center",
+        "src": "https://mailspark.s3.ap-southeast-2.amazonaws.com/1d1fab2ecd077bf0c403a1fecf49e696-removebg-preview+(2).png"
+      },
+      "displayName": "DraggableImage",
+      "custom": {},
+      "parent": "IYPC147lP4",
+      "hidden": false,
+      "nodes": [],
+      "linkedNodes": {}
+    },
+    "IPlQ_o10do": {
+      "type": {
+        "resolvedName": "DraggableImage"
+      },
+      "isCanvas": false,
+      "props": {
+        "marginT": 0,
+        "marginB": 0,
+        "marginR": 10,
+        "marginl": 10,
+        "height": 60,
+        "width": 60,
+        "align": "center",
+        "src": "https://mailspark.s3.ap-southeast-2.amazonaws.com/download-removebg-preview+(17)+(1).png"
+      },
+      "displayName": "DraggableImage",
+      "custom": {},
+      "parent": "IYPC147lP4",
+      "hidden": false,
+      "nodes": [],
+      "linkedNodes": {}
+    },
+    "j8J3z5VMeP": {
+      "type": {
+        "resolvedName": "DraggableImage"
+      },
+      "isCanvas": false,
+      "props": {
+        "marginT": 0,
+        "marginB": 0,
+        "marginR": 0,
+        "marginl": 0,
+        "height": 60,
+        "width": 60,
+        "align": "center",
+        "src": "https://mailspark.s3.ap-southeast-2.amazonaws.com/download-removebg-preview+(18)+(1).png"
+      },
+      "displayName": "DraggableImage",
+      "custom": {},
+      "parent": "IYPC147lP4",
+      "hidden": false,
+      "nodes": [],
+      "linkedNodes": {}
+    },
+    "vaDMb2eEHT": {
+      "type": {
+        "resolvedName": "DraggableImage"
+      },
+      "isCanvas": false,
+      "props": {
+        "marginT": "10",
+        "marginB": "11",
+        "marginR": 0,
+        "marginl": 0,
+        "height": 100,
+        "width": 100,
+        "align": "center"
+      },
+      "displayName": "DraggableImage",
+      "custom": {},
+      "parent": "ROOT",
+      "hidden": false,
+      "nodes": [],
+      "linkedNodes": {}
+    }
+  }

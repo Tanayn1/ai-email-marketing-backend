@@ -53,6 +53,7 @@ model editor {
   product_id String?
   email_saves Json[]
   preview_image_src String?
+  assets String[]
   created_at DateTime @default(now())
 }
 

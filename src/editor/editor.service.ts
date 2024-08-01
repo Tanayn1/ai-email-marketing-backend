@@ -1,7 +1,7 @@
 import { BadGatewayException, BadRequestException, Injectable } from '@nestjs/common';
 import { Response } from 'express';
 import { PrismaService } from 'src/prisma/prisma.service';
-import { GetImageDto, ManualEditSessionDto, SaveSessionDto, SessionFromTemplateDto } from './dto/editor.dto';
+import { addImageToAssetsDto, GetImageDto, ManualEditSessionDto, SaveSessionDto, SessionFromTemplateDto } from './dto/editor.dto';
 import puppeteer from 'puppeteer';
 import { AwsService } from 'src/aws/aws.service';
 
@@ -141,5 +141,19 @@ export class EditorService {
             await browser.close()
         }
 
+    }
+
+    async getAssets(sessionId: string, res: Response) {
+        const { assets } = await this.prisma.editor.findUnique({ where: { id: sessionId } });
+        return res.send({message: "Success", assets}).status(200)
+    }
+
+    async addAssets(dto : addImageToAssetsDto, res: Response) {
+        const { image, sessionId } = dto;
+        const session = await this.prisma.editor.findUnique({ where: { id: sessionId } });
+        const updatedSession = await this.prisma.editor.update({ where: { id: sessionId }, data: {
+            assets: [...session.assets, image]
+        } });
+        return res.send({message: "Success", updatedSession});
     }
 }

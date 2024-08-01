@@ -38,3 +38,11 @@ export class GetImageDto {
     @IsNotEmpty()
     html: string
 }
+
+export class addImageToAssetsDto {
+    @IsNotEmpty()
+    image: string
+
+    @IsNotEmpty()
+    sessionId: string
+}
