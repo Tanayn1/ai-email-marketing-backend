@@ -2,12 +2,21 @@ import { Injectable } from '@nestjs/common';
 import OpenAI from 'openai';
 import { GenerateEmailDto } from './dto/ai.dto';
 import { Response } from 'express';
-import * as template from  '../email-templates/testEmail.json' 
+import * as descriptionTemplate from '../email-templates/template2.json'
 import * as salesTemplate from '../email-templates/template1.json'
 import { PrismaService } from 'src/prisma/prisma.service';
 import { Brands, Products } from '@prisma/client';
 import { encodeBase64, compress } from "lzutf8";
 import { Colors, Fonts } from 'types/types';
+
+
+
+const templates = {
+    'salesTemplate': salesTemplate,
+    'descriptionTemplate': descriptionTemplate,
+    // Add more mappings here as needed
+};
+
 
 @Injectable()
 export class AiService {
@@ -21,6 +30,13 @@ export class AiService {
     }
 
     async getTemplateName(prompt: string, designStyle: string) {
+
+        const templateDescriptions = {
+            'salesTemplate': {name: "salesTemplate", description: "A template to showcase many items and get sales"},
+            'descriptionTemplate': {template: "descriptionTemplate", description: "A template to showcase the item and has detailed description of the item, it only sells you one item"},
+            // Add more mappings here as needed
+        };
+
         const jsonFormat = {
             "template_name": "{{name of template}}"
         }
@@ -32,7 +48,7 @@ export class AiService {
                     content: `You are a email design specialist, you respond in valid json format with this exact format: ${jsonFormat}`
             },{
                 role: 'user',
-                content: `Based on this prompt ${prompt}, which email template should i use? Please response with the template name only.\n Templates: `
+                content: `Based on this prompt ${prompt}, which email template should i use? Please response with the template name only.\n Templates: ${templateDescriptions}  `
             }],
             response_format: { type: "json_object" }
         });
@@ -199,7 +215,9 @@ export class AiService {
         const { prompt, brand_id, product_id, designStyle } = dto;
         const brand = await this.prisma.brands.findUnique({ where: { id: brand_id } })
         const product = await this.prisma.products.findUnique({ where: { id: product_id } });
-        //const templateName = await this.getTemplateName(prompt, designStyle);
+        const templateName = await this.getTemplateName(prompt, designStyle);
+        const template = templates[templateName]
+        console.log('selcted template', template)
         const preFillTemplate = await this.preFillTemplate(brand, template);
         console.log(preFillTemplate)
         const templateJson = await this.writeCopy(prompt, brand, product, preFillTemplate);

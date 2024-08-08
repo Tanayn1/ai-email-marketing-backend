@@ -1,0 +1,741 @@
+{
+    "ROOT": {
+      "type": {
+        "resolvedName": "CanvasContainer"
+      },
+      "isCanvas": true,
+      "props": {
+        "backgroundColor": "#ffffff"
+      },
+      "displayName": "CanvasContainer",
+      "custom": {},
+      "hidden": false,
+      "nodes": [
+        "PWf_6UqErl",
+        "TyBEZsPiZs",
+        "g46nANi5Rd",
+        "JKXeP4_Ep6",
+        "iKqVwc-hFs",
+        "MgFg2mUjsX"
+      ],
+      "linkedNodes": {}
+    },
+    "PWf_6UqErl": {
+      "type": {
+        "resolvedName": "CustomisableContainer"
+      },
+      "isCanvas": true,
+      "props": {
+        "id": "container",
+        "marginT": 0,
+        "marginB": 0,
+        "marginR": 0,
+        "marginl": 0,
+        "height": "700",
+        "width": 700,
+        "paddingT": 0,
+        "paddingR": 0,
+        "paddingl": 0,
+        "paddingB": 0,
+        "alignX": "start",
+        "alignY": "center",
+        "flexDirection": "column",
+        "backgroundColor": "{{{secondary_background_color}}}",
+        "borderRadius": 0
+      },
+      "displayName": "CustomisableContainer",
+      "custom": {},
+      "parent": "ROOT",
+      "hidden": false,
+      "nodes": [
+        "1QzM7NKYcQ",
+        "wAuJWGVTxT",
+        "kGLaZJ9UW0",
+        "UgpFKFpq_Z"
+      ],
+      "linkedNodes": {}
+    },
+    "1QzM7NKYcQ": {
+      "type": {
+        "resolvedName": "DraggableImage"
+      },
+      "isCanvas": false,
+      "props": {
+        "marginT": "40",
+        "marginB": 0,
+        "marginR": 0,
+        "marginl": 0,
+        "height": 100,
+        "width": 100,
+        "align": "start",
+        "src": "{{{logo}}}"
+      },
+      "displayName": "DraggableImage",
+      "custom": {},
+      "parent": "PWf_6UqErl",
+      "hidden": false,
+      "nodes": [],
+      "linkedNodes": {}
+    },
+    "kGLaZJ9UW0": {
+      "type": {
+        "resolvedName": "DraggableImage"
+      },
+      "isCanvas": false,
+      "props": {
+        "marginT": "21",
+        "marginB": 0,
+        "marginR": 0,
+        "marginl": 0,
+        "height": 270,
+        "width": 270,
+        "align": "start",
+        "src": "{{{image_1}}}"
+      },
+      "displayName": "DraggableImage",
+      "custom": {},
+      "parent": "PWf_6UqErl",
+      "hidden": false,
+      "nodes": [],
+      "linkedNodes": {}
+    },
+    "UgpFKFpq_Z": {
+      "type": {
+        "resolvedName": "DraggableButton"
+      },
+      "isCanvas": false,
+      "props": {
+        "fontSize": 20,
+        "fontWeight": 500,
+        "borderRadius": 10,
+        "align": "center",
+        "marginT": "57",
+        "marginB": 0,
+        "marginR": 0,
+        "marginl": 0,
+        "paddingT": 10,
+        "paddingR": 10,
+        "paddingl": 10,
+        "paddingB": 10,
+        "fontFamily": "Arial",
+        "backgroundColor": "{{{buttonColor}}}",
+        "textColor": "#00000",
+        "text": "{{{button_cta}}}"
+      },
+      "displayName": "DraggableButton",
+      "custom": {},
+      "parent": "PWf_6UqErl",
+      "hidden": false,
+      "nodes": [],
+      "linkedNodes": {}
+    },
+    "wAuJWGVTxT": {
+      "type": {
+        "resolvedName": "Text"
+      },
+      "isCanvas": false,
+      "props": {
+        "paddingT": 0,
+        "paddingR": 0,
+        "paddingl": 0,
+        "paddingB": 0,
+        "fontFamily": "Arial",
+        "textColor": "{{{textColor}}}",
+        "italic": false,
+        "fontWeight": 400,
+        "align": "start",
+        "text": "{{product_header}}",
+        "fontSize": "30",
+        "marginT": "20"
+      },
+      "displayName": "Text",
+      "custom": {},
+      "parent": "PWf_6UqErl",
+      "hidden": false,
+      "nodes": [],
+      "linkedNodes": {}
+    },
+    "TyBEZsPiZs": {
+      "type": {
+        "resolvedName": "Text"
+      },
+      "isCanvas": false,
+      "props": {
+        "paddingT": 0,
+        "paddingR": 0,
+        "paddingl": 0,
+        "paddingB": 0,
+        "fontFamily": "Arial",
+        "textColor": "#000000",
+        "italic": false,
+        "fontWeight": 400,
+        "align": "center",
+        "text": "{{product_description}}",
+        "fontSize": 20
+      },
+      "displayName": "Text",
+      "custom": {},
+      "parent": "ROOT",
+      "hidden": false,
+      "nodes": [],
+      "linkedNodes": {}
+    },
+    "g46nANi5Rd": {
+      "type": {
+        "resolvedName": "TwoColumns"
+      },
+      "isCanvas": false,
+      "props": {
+        "borderRadius": 0,
+        "article": true,
+        "rightText": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+        "leftText": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+        "paddingT": 10,
+        "paddingR": 0,
+        "paddingl": 0,
+        "paddingB": 10,
+        "marginT": "40",
+        "marginB": "27",
+        "marginR": 20,
+        "marginl": 20,
+        "backgroundColor": "",
+        "align": "space-evenly",
+        "leftWidth": "70%",
+        "rightWidth": "30%",
+        "columnLeftPaddingR": 30
+      },
+      "displayName": "TwoColumns",
+      "custom": {},
+      "parent": "ROOT",
+      "hidden": false,
+      "nodes": [],
+      "linkedNodes": {
+        "left": "_jb9UQLj2z",
+        "right": "3zc1j39qAB"
+      }
+    },
+    "_jb9UQLj2z": {
+      "type": {
+        "resolvedName": "Column"
+      },
+      "isCanvas": false,
+      "props": {
+        "elId": "left",
+        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+      },
+      "displayName": "Column",
+      "custom": {},
+      "parent": "g46nANi5Rd",
+      "hidden": false,
+      "nodes": [],
+      "linkedNodes": {
+        "left": "MIvdCbYXim"
+      }
+    },
+    "MIvdCbYXim": {
+      "type": "div",
+      "isCanvas": true,
+      "props": {},
+      "displayName": "div",
+      "custom": {},
+      "parent": "_jb9UQLj2z",
+      "hidden": false,
+      "nodes": [
+        "gQSSlfN3P8",
+        "sVqAh4CUpY"
+      ],
+      "linkedNodes": {}
+    },
+    "gQSSlfN3P8": {
+      "type": {
+        "resolvedName": "Text"
+      },
+      "isCanvas": false,
+      "props": {
+        "paddingT": 0,
+        "paddingR": 0,
+        "paddingl": 0,
+        "paddingB": 0,
+        "fontFamily": "Arial",
+        "textColor": "#000000",
+        "italic": false,
+        "fontWeight": 400,
+        "align": "start",
+        "text": "{{feature_1_title}}",
+        "fontSize": 30
+      },
+      "displayName": "Text",
+      "custom": {},
+      "parent": "MIvdCbYXim",
+      "hidden": false,
+      "nodes": [],
+      "linkedNodes": {}
+    },
+    "sVqAh4CUpY": {
+      "type": {
+        "resolvedName": "Text"
+      },
+      "isCanvas": false,
+      "props": {
+        "paddingT": 0,
+        "paddingR": 0,
+        "paddingl": 0,
+        "paddingB": 0,
+        "fontFamily": "Arial",
+        "textColor": "#000000",
+        "italic": false,
+        "fontWeight": 400,
+        "align": "start",
+        "text": "{{feature_1_description}}",
+        "fontSize": 10
+      },
+      "displayName": "Text",
+      "custom": {},
+      "parent": "MIvdCbYXim",
+      "hidden": false,
+      "nodes": [],
+      "linkedNodes": {}
+    },
+    "3zc1j39qAB": {
+      "type": {
+        "resolvedName": "Column"
+      },
+      "isCanvas": false,
+      "props": {
+        "elId": "right",
+        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+        "article": true
+      },
+      "displayName": "Column",
+      "custom": {},
+      "parent": "g46nANi5Rd",
+      "hidden": false,
+      "nodes": [],
+      "linkedNodes": {
+        "right": "SDQ-FFyDe1"
+      }
+    },
+    "SDQ-FFyDe1": {
+      "type": "div",
+      "isCanvas": true,
+      "props": {},
+      "displayName": "div",
+      "custom": {},
+      "parent": "3zc1j39qAB",
+      "hidden": false,
+      "nodes": [
+        "ZXHheRYLHz"
+      ],
+      "linkedNodes": {}
+    },
+    "ZXHheRYLHz": {
+      "type": {
+        "resolvedName": "DraggableImage"
+      },
+      "isCanvas": false,
+      "props": {
+        "marginT": 0,
+        "marginB": 0,
+        "marginR": 0,
+        "marginl": 0,
+        "height": 100,
+        "width": 100,
+        "align": "start",
+        "src": "{{{image_2}}}"
+      },
+      "displayName": "DraggableImage",
+      "custom": {},
+      "parent": "SDQ-FFyDe1",
+      "hidden": false,
+      "nodes": [],
+      "linkedNodes": {}
+    },
+    "JKXeP4_Ep6": {
+      "type": {
+        "resolvedName": "CustomisableContainer"
+      },
+      "isCanvas": true,
+      "props": {
+        "id": "container",
+        "marginT": 0,
+        "marginB": 0,
+        "marginR": 0,
+        "marginl": 0,
+        "height": "200",
+        "width": 700,
+        "paddingT": 0,
+        "paddingR": 0,
+        "paddingl": 0,
+        "paddingB": 0,
+        "alignX": "center",
+        "alignY": "center",
+        "flexDirection": "row",
+        "backgroundColor": "",
+        "borderRadius": 0
+      },
+      "displayName": "CustomisableContainer",
+      "custom": {},
+      "parent": "ROOT",
+      "hidden": false,
+      "nodes": [
+        "nOd3wXOrCG",
+        "w0Ponj-LOv"
+      ],
+      "linkedNodes": {}
+    },
+    "nOd3wXOrCG": {
+      "type": {
+        "resolvedName": "DraggableImage"
+      },
+      "isCanvas": false,
+      "props": {
+        "marginT": 0,
+        "marginB": 0,
+        "marginR": "55",
+        "marginl": 0,
+        "height": 100,
+        "width": 100,
+        "align": "start",
+        "src": "{{{image_3}}}"
+      },
+      "displayName": "DraggableImage",
+      "custom": {},
+      "parent": "JKXeP4_Ep6",
+      "hidden": false,
+      "nodes": [],
+      "linkedNodes": {}
+    },
+    "w0Ponj-LOv": {
+      "type": {
+        "resolvedName": "CustomisableContainer"
+      },
+      "isCanvas": true,
+      "props": {
+        "id": "container",
+        "marginT": 0,
+        "marginB": 0,
+        "marginR": 0,
+        "marginl": 0,
+        "height": "148",
+        "width": "397",
+        "paddingT": 0,
+        "paddingR": 0,
+        "paddingl": 0,
+        "paddingB": 0,
+        "alignX": "center",
+        "alignY": "start",
+        "flexDirection": "column",
+        "backgroundColor": "",
+        "borderRadius": 0
+      },
+      "displayName": "CustomisableContainer",
+      "custom": {},
+      "parent": "JKXeP4_Ep6",
+      "hidden": false,
+      "nodes": [
+        "JvfXC0yPta",
+        "XJWJifrCJz"
+      ],
+      "linkedNodes": {}
+    },
+    "XJWJifrCJz": {
+      "type": {
+        "resolvedName": "Text"
+      },
+      "isCanvas": false,
+      "props": {
+        "paddingT": 0,
+        "paddingR": 0,
+        "paddingl": 0,
+        "paddingB": 0,
+        "fontFamily": "Arial",
+        "textColor": "#000000",
+        "italic": false,
+        "fontWeight": 400,
+        "align": "start",
+        "text": "{{feature_3_description}}",
+        "fontSize": "10"
+      },
+      "displayName": "Text",
+      "custom": {},
+      "parent": "w0Ponj-LOv",
+      "hidden": false,
+      "nodes": [],
+      "linkedNodes": {}
+    },
+    "JvfXC0yPta": {
+      "type": {
+        "resolvedName": "Text"
+      },
+      "isCanvas": false,
+      "props": {
+        "paddingT": 0,
+        "paddingR": 0,
+        "paddingl": 0,
+        "paddingB": 0,
+        "fontFamily": "Arial",
+        "textColor": "#000000",
+        "italic": false,
+        "fontWeight": 400,
+        "align": "end",
+        "text": "{{feature_2_title}}",
+        "fontSize": "30"
+      },
+      "displayName": "Text",
+      "custom": {},
+      "parent": "w0Ponj-LOv",
+      "hidden": false,
+      "nodes": [],
+      "linkedNodes": {}
+    },
+    "iKqVwc-hFs": {
+      "type": {
+        "resolvedName": "TwoColumns"
+      },
+      "isCanvas": false,
+      "props": {
+        "borderRadius": 0,
+        "article": true,
+        "rightText": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+        "leftText": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+        "paddingT": 10,
+        "paddingR": 0,
+        "paddingl": 0,
+        "paddingB": 10,
+        "marginT": 0,
+        "marginB": 0,
+        "marginR": 20,
+        "marginl": 20,
+        "backgroundColor": "",
+        "align": "space-evenly",
+        "leftWidth": "70%",
+        "rightWidth": "30%",
+        "columnLeftPaddingR": 30
+      },
+      "displayName": "TwoColumns",
+      "custom": {},
+      "parent": "ROOT",
+      "hidden": false,
+      "nodes": [],
+      "linkedNodes": {
+        "left": "8qOQS1sXgu",
+        "right": "A-X6GaIinB"
+      }
+    },
+    "8qOQS1sXgu": {
+      "type": {
+        "resolvedName": "Column"
+      },
+      "isCanvas": false,
+      "props": {
+        "elId": "left",
+        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+      },
+      "displayName": "Column",
+      "custom": {},
+      "parent": "iKqVwc-hFs",
+      "hidden": false,
+      "nodes": [],
+      "linkedNodes": {
+        "left": "MTmMcYLvNc"
+      }
+    },
+    "MTmMcYLvNc": {
+      "type": "div",
+      "isCanvas": true,
+      "props": {},
+      "displayName": "div",
+      "custom": {},
+      "parent": "8qOQS1sXgu",
+      "hidden": false,
+      "nodes": [
+        "yXxZ6QBEex",
+        "nkGXQcSJjy"
+      ],
+      "linkedNodes": {}
+    },
+    "yXxZ6QBEex": {
+      "type": {
+        "resolvedName": "Text"
+      },
+      "isCanvas": false,
+      "props": {
+        "paddingT": 0,
+        "paddingR": 0,
+        "paddingl": 0,
+        "paddingB": 0,
+        "fontFamily": "Arial",
+        "textColor": "#000000",
+        "italic": false,
+        "fontWeight": 400,
+        "align": "start",
+        "text": "{{feature_3_description}}",
+        "fontSize": 30
+      },
+      "displayName": "Text",
+      "custom": {},
+      "parent": "MTmMcYLvNc",
+      "hidden": false,
+      "nodes": [],
+      "linkedNodes": {}
+    },
+    "nkGXQcSJjy": {
+      "type": {
+        "resolvedName": "Text"
+      },
+      "isCanvas": false,
+      "props": {
+        "paddingT": 0,
+        "paddingR": 0,
+        "paddingl": 0,
+        "paddingB": 0,
+        "fontFamily": "Arial",
+        "textColor": "#000000",
+        "italic": false,
+        "fontWeight": 400,
+        "align": "start",
+        "text": "{{feature_3_description}}",
+        "fontSize": 10
+      },
+      "displayName": "Text",
+      "custom": {},
+      "parent": "MTmMcYLvNc",
+      "hidden": false,
+      "nodes": [],
+      "linkedNodes": {}
+    },
+    "A-X6GaIinB": {
+      "type": {
+        "resolvedName": "Column"
+      },
+      "isCanvas": false,
+      "props": {
+        "elId": "right",
+        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+        "article": true
+      },
+      "displayName": "Column",
+      "custom": {},
+      "parent": "iKqVwc-hFs",
+      "hidden": false,
+      "nodes": [],
+      "linkedNodes": {
+        "right": "eiYif3SWFi"
+      }
+    },
+    "eiYif3SWFi": {
+      "type": "div",
+      "isCanvas": true,
+      "props": {},
+      "displayName": "div",
+      "custom": {},
+      "parent": "A-X6GaIinB",
+      "hidden": false,
+      "nodes": [
+        "uuImkMEQz5"
+      ],
+      "linkedNodes": {}
+    },
+    "uuImkMEQz5": {
+      "type": {
+        "resolvedName": "DraggableImage"
+      },
+      "isCanvas": false,
+      "props": {
+        "marginT": 0,
+        "marginB": 0,
+        "marginR": 0,
+        "marginl": 0,
+        "height": 100,
+        "width": 100,
+        "align": "start",
+        "src": "{{{image_4}}}"
+      },
+      "displayName": "DraggableImage",
+      "custom": {},
+      "parent": "eiYif3SWFi",
+      "hidden": false,
+      "nodes": [],
+      "linkedNodes": {}
+    },
+    "MgFg2mUjsX": {
+      "type": {
+        "resolvedName": "CustomisableContainer"
+      },
+      "isCanvas": true,
+      "props": {
+        "id": "container",
+        "marginT": 0,
+        "marginB": 0,
+        "marginR": 0,
+        "marginl": 0,
+        "height": 200,
+        "width": 700,
+        "paddingT": 0,
+        "paddingR": 0,
+        "paddingl": 0,
+        "paddingB": 0,
+        "alignX": "center",
+        "alignY": "center",
+        "flexDirection": "column",
+        "backgroundColor": "",
+        "borderRadius": 0
+      },
+      "displayName": "CustomisableContainer",
+      "custom": {},
+      "parent": "ROOT",
+      "hidden": false,
+      "nodes": [
+        "rYHl5oWjfp",
+        "V_GMhxp-_S"
+      ],
+      "linkedNodes": {}
+    },
+    "rYHl5oWjfp": {
+      "type": {
+        "resolvedName": "DraggableImage"
+      },
+      "isCanvas": false,
+      "props": {
+        "marginT": 0,
+        "marginB": "20",
+        "marginR": 0,
+        "marginl": 0,
+        "height": 100,
+        "width": 100,
+        "align": "start",
+        "src": "{{{logo}}}"
+      },
+      "displayName": "DraggableImage",
+      "custom": {},
+      "parent": "MgFg2mUjsX",
+      "hidden": false,
+      "nodes": [],
+      "linkedNodes": {}
+    },
+    "V_GMhxp-_S": {
+      "type": {
+        "resolvedName": "Text"
+      },
+      "isCanvas": false,
+      "props": {
+        "paddingT": 0,
+        "paddingR": 0,
+        "paddingl": 0,
+        "paddingB": 0,
+        "fontFamily": "Arial",
+        "textColor": "#000000",
+        "italic": false,
+        "fontWeight": 400,
+        "align": "start",
+        "text": "{{email_footer}}",
+        "fontSize": "10"
+      },
+      "displayName": "Text",
+      "custom": {},
+      "parent": "MgFg2mUjsX",
+      "hidden": false,
+      "nodes": [],
+      "linkedNodes": {}
+    }
+  }
